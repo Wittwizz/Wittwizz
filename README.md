@@ -39,6 +39,23 @@ wittwizz/
 - **Performance** - Optimized CSS, minimal JavaScript
 - **SEO** - Meta tags, structured data, semantic HTML
 - **Analytics** - Event tracking for user interactions
+- **Deep Linking** - Shareable calculator configurations with URL state
+
+### Deep Linking System
+The calculator supports deep linking to share specific configurations:
+
+#### New Schema (Recommended)
+- **Quick Mode**: `?mode=quick&pick=starter`
+- **Advanced Mode**: `?mode=advanced&pick=brand_kit,web_site,social_media`
+
+#### Legacy Schema (Backward Compatible)
+- **Preset Only**: `?pick=starter` (automatically sets Quick mode)
+
+#### Features
+- URLs automatically sync with calculator state
+- Browser back/forward navigation preserves state
+- Copy link button generates shareable URLs
+- Automatic mode detection based on selections
 
 ## 🚀 Deployment
 
