@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component styles */
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white hover:opacity-95 focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-ink hover:bg-gray-100 focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+}
+
+/* Focus management for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-primary {
+    background-color: #1e40af !important;
+  }
+  
+  .text-primary {
+    color: #1e40af !important;
+  }
+}

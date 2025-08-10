@@ -1,0 +1,11 @@
+:root {
+  --brand-primary: #2563EB;
+  --radius-2xl: 1rem;
+  --surface: #0B1426;
+  --ink: #1A1A1A;
+}
+
+/* Keep using system UI font via CSS */
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
