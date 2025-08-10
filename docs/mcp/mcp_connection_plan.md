@@ -8,7 +8,8 @@
 
 ## Current Status
 ✅ **Project initialized** - Workspace structure created
-🔄 **MCP Setup in Progress** - Testing server connections
+✅ **Filesystem & Git servers** - Connected and tested
+🔄 **GitHub & HTTP servers** - Awaiting configuration
 
 ## Next Steps
 1. Verify MCP server connectivity (filesystem, git, github, http/openapi)
@@ -22,19 +23,19 @@
 
 ### 1. Filesystem Server
 - **Purpose**: Read/write content and docs inside project workspace
-- **Status**: 🔄 Testing
+- **Status**: ✅ Connected
 - **Tests**: 
-  - [ ] List /content and /docs
-  - [ ] Create scratch file and delete it
+  - [x] List /content and /docs
+  - [x] Create scratch file and delete it
 - **Success Criteria**: Cursor can create/read/write within repo-safe paths
 
 ### 2. Git Server
 - **Purpose**: Create branches, commit spec files, open PRs locally
-- **Status**: 🔄 Testing
+- **Status**: ✅ Connected
 - **Tests**:
-  - [ ] Init repo if missing
-  - [ ] Create branch mcp-setup
-  - [ ] Commit a test file
+  - [x] Init repo if missing
+  - [x] Create branch mcp-setup
+  - [x] Commit a test file
 - **Success Criteria**: Local git ops function without errors
 
 ### 3. GitHub Server

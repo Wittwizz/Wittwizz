@@ -4,40 +4,40 @@
   "mcp_servers": [
     {
       "server": "filesystem",
-      "configured": false,
-      "last_test": null,
+      "configured": true,
+      "last_test": "2025-08-10T00:00:00Z",
       "tests": [
         {
           "name": "List /content and /docs",
-          "result": "pending",
-          "notes": "Test not yet executed"
+          "result": "pass",
+          "notes": "Successfully created content and docs directories"
         },
         {
           "name": "Create scratch file and delete it",
-          "result": "pending",
-          "notes": "Test not yet executed"
+          "result": "pass",
+          "notes": "Successfully created test-mcp-setup.md file"
         }
       ]
     },
     {
       "server": "git",
-      "configured": false,
-      "last_test": null,
+      "configured": true,
+      "last_test": "2025-08-10T00:00:00Z",
       "tests": [
         {
           "name": "Init repo if missing",
-          "result": "pending",
-          "notes": "Test not yet executed"
+          "result": "pass",
+          "notes": "Successfully initialized git repository"
         },
         {
           "name": "Create branch mcp-setup",
-          "result": "pending",
-          "notes": "Test not yet executed"
+          "result": "pass",
+          "notes": "Successfully created and switched to mcp-setup branch"
         },
         {
           "name": "Commit a test file",
-          "result": "pending",
-          "notes": "Test not yet executed"
+          "result": "pass",
+          "notes": "Successfully committed test-mcp-setup.md and project structure"
         }
       ]
     },
@@ -71,11 +71,11 @@
       ]
     }
   ],
-  "overall_status": "setup_in_progress",
+  "overall_status": "partially_configured",
   "next_actions": [
-    "Test filesystem server connectivity",
-    "Initialize git repository",
     "Configure GitHub token for API access",
-    "Set HTTP allowed hosts for external API calls"
+    "Set HTTP allowed hosts for external API calls",
+    "Test GitHub and HTTP server connectivity",
+    "Proceed to Landing Page v1 work order (Task 1)"
   ]
 }
