@@ -1,0 +1,144 @@
+{
+  "project": "Wittwizz — MCP Enablement & Allowlist (Task M1)",
+  "last_updated": "2025-08-11T02:15:00Z",
+  "status": "endpoints_unavailable_fallback_implemented",
+  "note": "MCP endpoints are currently unavailable. This allowlist provides fallback implementation guidance using direct component libraries.",
+  "components": {
+    "button": {
+      "source": "shadcn/ui",
+      "fallback_source": "https://ui.shadcn.com/docs/components/button",
+      "tokens": ["--color-accent", "--radius"],
+      "a11y": "focus ring visible; AA contrast",
+      "usage_prompt": "Add a primary button with label 'Plan my 30-day Launch Sprint'",
+      "implementation": {
+        "type": "fallback",
+        "method": "direct_import",
+        "package": "@shadcn/ui",
+        "notes": "Import button component directly from shadcn/ui library"
+      }
+    },
+    "accordion": {
+      "source": "shadcn/ui",
+      "fallback_source": "https://ui.shadcn.com/docs/components/accordion",
+      "tokens": ["--radius"],
+      "a11y": "aria-controls; keyboard nav",
+      "usage_prompt": "Insert FAQ accordion with our FAQ items",
+      "implementation": {
+        "type": "fallback",
+        "method": "direct_import",
+        "package": "@shadcn/ui",
+        "notes": "Import accordion component directly from shadcn/ui library"
+      }
+    },
+    "tabs": {
+      "source": "Radix",
+      "fallback_source": "https://www.radix-ui.com/primitives/docs/components/tabs",
+      "tokens": ["--color-accent"],
+      "a11y": "role=tablist; arrow-key nav",
+      "usage_prompt": "Add sectors tabs: D2C, SaaS, Fintech, Healthtech",
+      "implementation": {
+        "type": "fallback",
+        "method": "direct_import",
+        "package": "@radix-ui/react-tabs",
+        "notes": "Import tabs component directly from Radix UI library"
+      }
+    },
+    "dialog": {
+      "source": "Radix",
+      "fallback_source": "https://www.radix-ui.com/primitives/docs/components/dialog",
+      "tokens": ["--color-surface", "--radius"],
+      "a11y": "aria-modal; focus trap",
+      "usage_prompt": "Create lead-capture dialog for calculator",
+      "implementation": {
+        "type": "fallback",
+        "method": "direct_import",
+        "package": "@radix-ui/react-dialog",
+        "notes": "Import dialog component directly from Radix UI library"
+      }
+    },
+    "icons": {
+      "source": "Lucide",
+      "fallback_source": "https://lucide.dev/",
+      "tokens": [],
+      "a11y": "decorative=true unless labelled",
+      "usage_prompt": "Use 'check' and 'arrow-right' icons in packages",
+      "implementation": {
+        "type": "fallback",
+        "method": "direct_import",
+        "package": "lucide-react",
+        "notes": "Import icons directly from Lucide React library"
+      }
+    },
+    "badge": {
+      "source": "Flowbite",
+      "fallback_source": "https://flowbite.com/docs/components/badge",
+      "tokens": ["--color-accent-dark"],
+      "a11y": "text AA",
+      "usage_prompt": "Add small badge 'Founder-speed delivery' in hero",
+      "implementation": {
+        "type": "fallback",
+        "method": "direct_import",
+        "package": "flowbite-react",
+        "notes": "Import badge component directly from Flowbite React library"
+      }
+    }
+  },
+  "mcp_endpoints": {
+    "status": "unavailable",
+    "tested_endpoints": [
+      {
+        "endpoint": "https://mcp.shadcn.net",
+        "status": "failed",
+        "error": "The remote name could not be resolved"
+      },
+      {
+        "endpoint": "https://mcp.radix-ui.com",
+        "status": "failed",
+        "error": "SSL/TLS connection failed"
+      },
+      {
+        "endpoint": "https://mcp.lucide.dev",
+        "status": "failed",
+        "error": "HTTP 404 Not Found"
+      },
+      {
+        "endpoint": "https://mcp.heroicons.com",
+        "status": "failed",
+        "error": "The remote name could not be resolved"
+      },
+      {
+        "endpoint": "https://mcp.tailwindcss.com",
+        "status": "failed",
+        "error": "The remote name could not be resolved"
+      },
+      {
+        "endpoint": "https://mcp.flowbite.com",
+        "status": "failed",
+        "error": "The remote name could not be resolved"
+      }
+    ],
+    "fallback_strategy": "direct_library_imports",
+    "notes": "MCP endpoints appear to be conceptual or not yet implemented. Using direct component library imports as fallback."
+  },
+  "token_mapping": {
+    "wittwizz_tokens": {
+      "--color-accent": "#3B82F6",
+      "--color-accent-dark": "#1D4ED8",
+      "--color-surface": "#FFFFFF",
+      "--radius": "0.5rem",
+      "--spacing": "1rem"
+    },
+    "component_library_mapping": {
+      "shadcn/ui": "Uses CSS custom properties for theming",
+      "radix": "Accepts className and style props for customization",
+      "lucide": "Accepts size, color, and className props",
+      "flowbite": "Uses Tailwind CSS classes for theming"
+    }
+  },
+  "next_actions": [
+    "Implement fallback component imports using direct library packages",
+    "Create component wrapper functions that apply Wittwizz tokens",
+    "Test accessibility compliance with fallback implementations",
+    "Monitor MCP endpoint availability for future integration"
+  ]
+}
