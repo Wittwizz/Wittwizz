@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { calcSubtotal, discountAmount, grandTotal, sumIncl, timelineDays, getPriceDisplay, type Service, type Preset } from '@/lib/calc';
+import { trackDeepLinkEvent, trackCalculatorEvent } from '@/lib/analytics';
 
 // Fallback data in case import fails
 const fallbackData = {
@@ -50,6 +51,18 @@ export default function Calculator() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // New state for user feedback and accessibility
+  const [copyFeedback, setCopyFeedback] = useState<string>('');
+  const [copyFeedbackVisible, setCopyFeedbackVisible] = useState(false);
+  const [shareButtonTooltip, setShareButtonTooltip] = useState(false);
+  
+  // Refs for focus management
+  const copyButtonRef = useRef<HTMLButtonElement>(null);
+  const urlInputRef = useRef<HTMLInputElement>(null);
+  
+  // Debounce timer ref
+  const urlUpdateTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   // Load pricing data
   useEffect(() => {
@@ -113,43 +126,75 @@ export default function Calculator() {
         setMode('quick');
         setPicked(keys);
         console.log('🔗 Deep link: Preset detected, set to quick mode');
+        
+        // Track deep link open
+        trackDeepLinkEvent.opened('preset', {
+          preset_id: keys[0],
+          mode: 'quick'
+        });
       } else {
         // It's individual items - check mode parameter
         const detectedMode = modeParam === 'quick' ? 'quick' : 'advanced';
         setMode(detectedMode);
         setPicked(keys.filter(k => map[k]));
         console.log(`🔗 Deep link: Items detected, mode set to ${detectedMode}`);
+        
+        // Track deep link open
+        trackDeepLinkEvent.opened('custom', {
+          items_count: keys.length,
+          mode: detectedMode
+        });
       }
     } else if (modeParam) {
       // Only mode specified, no items
       setMode(modeParam === 'quick' ? 'quick' : 'advanced');
       setPicked([]);
       console.log(`🔗 Deep link: Mode only, set to ${modeParam}`);
+      
+              // Track deep link open
+        trackDeepLinkEvent.opened('mode_only', {
+          mode: modeParam
+        });
     }
   }, [map, presetMap]);
 
-  // deep-link sync with new schema
+  // Debounced deep-link sync with new schema (150ms delay)
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    
-    // Always sync mode
-    params.set('mode', mode);
-    
-    // Sync picked items
-    if (picked.length) {
-      params.set('pick', picked.join(','));
-    } else {
-      params.delete('pick');
+    // Clear existing timer
+    if (urlUpdateTimerRef.current) {
+      clearTimeout(urlUpdateTimerRef.current);
     }
     
-    // Build new URL
-    const next = `${window.location.pathname}?${params.toString()}`;
+    // Set new timer
+    urlUpdateTimerRef.current = setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
+      
+      // Always sync mode
+      params.set('mode', mode);
+      
+      // Sync picked items
+      if (picked.length) {
+        params.set('pick', picked.join(','));
+      } else {
+        params.delete('pick');
+      }
+      
+      // Build new URL
+      const next = `${window.location.pathname}?${params.toString()}`;
+      
+      // Only update if URL actually changed
+      if (next !== window.location.pathname + window.location.search) {
+        window.history.replaceState({}, '', next);
+        console.log('🔗 URL updated (debounced):', next);
+      }
+    }, 200); // 200ms debounce to avoid history spam
     
-    // Only update if URL actually changed
-    if (next !== window.location.pathname + window.location.search) {
-      window.history.replaceState({}, '', next);
-      console.log('🔗 URL updated:', next);
-    }
+    // Cleanup timer on unmount
+    return () => {
+      if (urlUpdateTimerRef.current) {
+        clearTimeout(urlUpdateTimerRef.current);
+      }
+    };
   }, [mode, picked]);
 
   const handlePresetSelect = (presetKey: string) => {
@@ -157,15 +202,32 @@ export default function Calculator() {
     if (preset) {
       setPicked(preset.includes);
       setMode('quick');
+      
+      // Track preset selection
+      trackCalculatorEvent.presetSelected(
+        presetKey,
+        preset.label,
+        preset.includes.length
+      );
     }
   };
 
   const handleItemToggle = (itemKey: string) => {
-    setPicked(prev => 
-      prev.includes(itemKey) 
+    setPicked(prev => {
+      const newPicked = prev.includes(itemKey) 
         ? prev.filter(k => k !== itemKey)
-        : [...prev, itemKey]
-    );
+        : [...prev, itemKey];
+      
+      // Track item toggle
+      trackCalculatorEvent.itemToggled(
+        itemKey,
+        map[itemKey]?.label || itemKey,
+        prev.includes(itemKey) ? 'removed' : 'added',
+        newPicked.length
+      );
+      
+      return newPicked;
+    });
   };
 
   const toggleExpanded = (itemKey: string) => {
@@ -179,6 +241,57 @@ export default function Calculator() {
       return next;
     });
   };
+
+  // Enhanced copy function with accessibility and analytics
+  const handleCopyLink = useCallback(async () => {
+    try {
+      const url = generateShareableUrl();
+      await navigator.clipboard.writeText(url);
+      
+      // Set success feedback
+      setCopyFeedback('Link copied!');
+      setCopyFeedbackVisible(true);
+      
+      // Track copy event
+      trackDeepLinkEvent.copied(url, mode, picked.length, picked);
+      
+      // Hide feedback after 3 seconds
+      setTimeout(() => {
+        setCopyFeedbackVisible(false);
+        setCopyFeedback('');
+      }, 3000);
+      
+      // Announce to screen readers
+      if (copyButtonRef.current) {
+        copyButtonRef.current.setAttribute('aria-label', 'Link copied successfully');
+        setTimeout(() => {
+          if (copyButtonRef.current) {
+            copyButtonRef.current.setAttribute('aria-label', 'Copy link');
+          }
+        }, 3000);
+      }
+      
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+      
+      // Set error feedback
+      setCopyFeedback('Failed to copy link');
+      setCopyFeedbackVisible(true);
+      
+      // Track copy failure
+      trackDeepLinkEvent.copyFailed(
+        err instanceof Error ? err.message : 'Unknown error',
+        mode,
+        picked.length
+      );
+      
+      // Hide feedback after 3 seconds
+      setTimeout(() => {
+        setCopyFeedbackVisible(false);
+        setCopyFeedback('');
+      }, 3000);
+    }
+  }, [mode, picked]);
 
   // Utility function to generate shareable URLs
   const generateShareableUrl = (customMode?: 'quick' | 'advanced', customPicked?: string[]) => {
@@ -441,28 +554,64 @@ export default function Calculator() {
                 Get started
               </Button>
               
-              {/* Shareable URL Section */}
+              {/* Enhanced Shareable URL Section */}
               <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <div className="text-xs text-gray-600 dark:text-gray-400 mb-2">
                   Share this configuration:
                 </div>
-                <div className="flex items-center gap-2">
+                
+                {/* URL Input with improved accessibility */}
+                <div className="flex items-center gap-2 mb-2">
                   <input
+                    ref={urlInputRef}
                     type="text"
                     value={generateShareableUrl()}
                     readOnly
                     className="flex-1 text-xs bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded px-2 py-1 text-gray-700 dark:text-gray-300"
+                    aria-label="Shareable link for this configuration"
+                    aria-describedby="copy-feedback"
                   />
+                  
+                  {/* Enhanced Copy Button with accessibility and feedback */}
                   <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(generateShareableUrl());
-                      // You could add a toast notification here
-                    }}
-                    className="text-xs text-primary hover:text-primary/80 font-medium px-2 py-1 hover:bg-primary/10 rounded"
+                    ref={copyButtonRef}
+                    onClick={handleCopyLink}
+                    className="text-xs text-primary hover:text-primary/80 font-medium px-3 py-1 hover:bg-primary/10 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    aria-label="Copy link"
+                    aria-describedby="copy-feedback"
+                    onMouseEnter={() => setShareButtonTooltip(true)}
+                    onMouseLeave={() => setShareButtonTooltip(false)}
+                    onFocus={() => setShareButtonTooltip(true)}
+                    onBlur={() => setShareButtonTooltip(false)}
                   >
                     Copy
                   </button>
                 </div>
+                
+                {/* Visual and screen reader feedback */}
+                {copyFeedbackVisible && (
+                  <div 
+                    id="copy-feedback"
+                    className={`text-xs font-medium transition-opacity duration-200 ${
+                      copyFeedback.includes('Failed') 
+                        ? 'text-red-600 dark:text-red-400' 
+                        : 'text-green-600 dark:text-green-400'
+                    }`}
+                    role="status"
+                    aria-live="polite"
+                  >
+                    {copyFeedback}
+                  </div>
+                )}
+                
+                {/* Tooltip for Share button */}
+                {shareButtonTooltip && (
+                  <div className="absolute z-10 px-2 py-1 text-xs text-white bg-gray-800 rounded shadow-lg -mt-8 ml-2 pointer-events-none">
+                    Copy link to share this configuration
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+                  </div>
+                )}
+                
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                   Mode: {mode} • Items: {picked.length}
                 </div>

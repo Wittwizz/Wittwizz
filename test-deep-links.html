@@ -5,109 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Link Test - Wittwizz Calculator</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-        .test-link { display: block; margin: 10px 0; padding: 10px; background: #f5f5f5; border-radius: 5px; }
-        .test-link:hover { background: #e5e5e5; }
-        .description { color: #666; font-size: 14px; margin-top: 5px; }
-        .preset { background: #e8f5e8; }
-        .advanced { background: #e8f0f5; }
-        .mixed { background: #f5f0e8; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+        .test-link {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 8px 16px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .test-link:hover {
+            background: #2563eb;
+        }
+        .test-link:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .status.success { background: #d1fae5; color: #065f46; }
+        .status.info { background: #dbeafe; color: #1e40af; }
+        .status.warning { background: #fef3c7; color: #92400e; }
+        .status.error { background: #fee2e2; color: #991b1b; }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .feature-list li:before {
+            content: "✅ ";
+            color: #059669;
+        }
     </style>
 </head>
 <body>
-    <h1>Deep Link Test - Wittwizz Calculator</h1>
-    <p>Test the new deep link schema with these URLs. Each should open the calculator in the correct state.</p>
+    <h1>🧪 Deep Link Testing - Wittwizz Calculator</h1>
     
-    <h2>Quick Mode Tests</h2>
+    <div class="test-section">
+        <h2>Test Deep Links</h2>
+        <p>Click these links to test the deep linking functionality:</p>
+        
+        <h3>Preset Links</h3>
+        <a href="?pick=starter" class="test-link">Starter Package</a>
+        <a href="?pick=growth" class="test-link">Growth Package</a>
+        <a href="?pick=scale" class="test-link">Scale Package</a>
+        
+        <h3>Custom Item Links</h3>
+        <a href="?pick=brand_kit,one_page_site&mode=quick" class="test-link">Brand Kit + One Page Site (Quick)</a>
+        <a href="?pick=brand_kit,one_page_site,web_app&mode=advanced" class="test-link">Brand Kit + One Page Site + Web App (Advanced)</a>
+        
+        <h3>Mode-Only Links</h3>
+        <a href="?mode=quick" class="test-link">Quick Mode Only</a>
+        <a href="?mode=advanced" class="test-link">Advanced Mode Only</a>
+        
+        <h3>Complex Combinations</h3>
+        <a href="?pick=brand_kit,one_page_site,web_app,social_media&mode=advanced" class="test-link">Full Package (Advanced)</a>
+    </div>
     
-    <a href="index.html?mode=quick" class="test-link preset">
-        <strong>Quick Mode Only</strong>
-        <div class="description">Should open calculator in quick mode with no presets selected</div>
-    </a>
+    <div class="test-section">
+        <h2>Expected Behavior</h2>
+        <ul class="feature-list">
+            <li>URL should update without page reload</li>
+            <li>Calculator should load with correct preset/items selected</li>
+            <li>Mode should switch to specified value</li>
+            <li>No layout shift should occur</li>
+            <li>Focus should remain in appropriate location</li>
+            <li>Analytics events should fire in console</li>
+        </ul>
+    </div>
     
-    <a href="index.html?mode=quick&pick=starter" class="test-link preset">
-        <strong>Quick Mode + Starter Preset</strong>
-        <div class="description">Should open in quick mode with starter preset selected</div>
-    </a>
+    <div class="test-section">
+        <h2>Accessibility Features to Test</h2>
+        <ul class="feature-list">
+            <li>Screen reader announcements when copying links</li>
+            <li>Visual feedback when copying links ("Link copied!")</li>
+            <li>Tooltip on Share button hover/focus</li>
+            <li>Proper ARIA labels and descriptions</li>
+            <li>No focus loss during URL updates</li>
+        </ul>
+    </div>
     
-    <a href="index.html?mode=quick&pick=sprint" class="test-link preset">
-        <strong>Quick Mode + Sprint Preset</strong>
-        <div class="description">Should open in quick mode with sprint preset selected</div>
-    </a>
+    <div class="test-section">
+        <h2>Analytics Events to Monitor</h2>
+        <p>Open browser console to see these events:</p>
+        <ul class="feature-list">
+            <li><code>deep_link_open</code> - When deep links are opened</li>
+            <li><code>link_copied</code> - When links are copied</li>
+            <li><code>preset_selected</code> - When presets are selected</li>
+            <li><code>item_toggled</code> - When items are added/removed</li>
+            <li><code>mode_changed</code> - When mode changes</li>
+        </ul>
+    </div>
     
-    <a href="index.html?mode=quick&pick=scale" class="test-link preset">
-        <strong>Quick Mode + Scale Preset</strong>
-        <div class="description">Should open in quick mode with scale preset selected</div>
-    </a>
+    <div class="test-section">
+        <h2>Testing Checklist</h2>
+        <div class="status info">
+            <strong>Manual Testing Required:</strong><br>
+            1. Click each test link above<br>
+            2. Verify calculator loads correctly<br>
+            3. Test copy link functionality<br>
+            4. Check accessibility with screen reader<br>
+            5. Monitor console for analytics events<br>
+            6. Test keyboard navigation
+        </div>
+    </div>
     
-    <h2>Advanced Mode Tests</h2>
+    <div class="test-section">
+        <h2>Current URL Status</h2>
+        <div id="url-status" class="status info">
+            Current URL: <span id="current-url"></span>
+        </div>
+        <div id="url-params" class="status info">
+            Parameters: <span id="current-params"></span>
+        </div>
+    </div>
     
-    <a href="index.html?mode=advanced" class="test-link advanced">
-        <strong>Advanced Mode Only</strong>
-        <div class="description">Should open calculator in advanced mode with no services selected</div>
-    </a>
-    
-    <a href="index.html?mode=advanced&pick=brand_kit" class="test-link advanced">
-        <strong>Advanced Mode + Brand Kit</strong>
-        <div class="description">Should open in advanced mode with brand kit selected</div>
-    </a>
-    
-    <a href="index.html?mode=advanced&pick=brand_kit,one_page_site" class="test-link advanced">
-        <strong>Advanced Mode + Multiple Services</strong>
-        <div class="description">Should open in advanced mode with brand kit and one-page site selected</div>
-    </a>
-    
-    <h2>Backward Compatibility Tests</h2>
-    
-    <a href="index.html?pick=starter" class="test-link mixed">
-        <strong>Legacy: Preset Only (No Mode)</strong>
-        <div class="description">Should automatically detect quick mode and select starter preset</div>
-    </a>
-    
-    <a href="index.html?pick=brand_kit" class="test-link mixed">
-        <strong>Legacy: Service Only (No Mode)</strong>
-        <div class="description">Should default to advanced mode and select brand kit</div>
-    </a>
-    
-    <a href="index.html?pick=brand_kit,one_page_site" class="test-link mixed">
-        <strong>Legacy: Multiple Services (No Mode)</strong>
-        <div class="description">Should default to advanced mode and select multiple services</div>
-    </a>
-    
-    <h2>Edge Cases</h2>
-    
-    <a href="index.html?mode=invalid&pick=starter" class="test-link mixed">
-        <strong>Invalid Mode + Preset</strong>
-        <div class="description">Should ignore invalid mode and detect preset correctly</div>
-    </a>
-    
-    <a href="index.html?mode=quick&pick=invalid_service" class="test-link mixed">
-        <strong>Quick Mode + Invalid Service</strong>
-        <div class="description">Should open in quick mode with no items selected</div>
-    </a>
-    
-    <a href="index.html?mode=advanced&pick=starter,invalid_service" class="test-link mixed">
-        <strong>Advanced Mode + Mixed Valid/Invalid</strong>
-        <div class="description">Should open in advanced mode with only valid services selected</div>
-    </a>
-    
-    <h2>Expected Behavior</h2>
-    <ul>
-        <li><strong>Mode Parameter:</strong> Always respected when present</li>
-        <li><strong>Preset Detection:</strong> Automatically sets mode to 'quick' when preset ID is first in pick list</li>
-        <li><strong>Service Detection:</strong> Defaults to 'advanced' mode when no presets detected</li>
-        <li><strong>URL Sync:</strong> URL updates in real-time as user changes mode or selections</li>
-        <li><strong>Shareable URLs:</strong> Copy button generates URLs that restore exact state</li>
-    </ul>
-    
-    <h2>Testing Steps</h2>
-    <ol>
-        <li>Click each test link above</li>
-        <li>Verify the calculator opens in the correct mode</li>
-        <li>Verify the correct items are selected</li>
-        <li>Change mode or selections and verify URL updates</li>
-        <li>Copy the shareable URL and test it in a new tab</li>
-        <li>Test browser back/forward navigation</li>
-    </ol>
+    <script>
+        // Update URL status display
+        function updateUrlStatus() {
+            const currentUrl = window.location.href;
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlParams.entries());
+            
+            document.getElementById('current-url').textContent = currentUrl;
+            document.getElementById('current-params').textContent = JSON.stringify(params, null, 2);
+        }
+        
+        // Update on page load and URL changes
+        updateUrlStatus();
+        window.addEventListener('popstate', updateUrlStatus);
+        
+        // Monitor URL changes (for SPA navigation)
+        let currentUrl = window.location.href;
+        setInterval(() => {
+            if (window.location.href !== currentUrl) {
+                currentUrl = window.location.href;
+                updateUrlStatus();
+            }
+        }, 100);
+        
+        // Add click tracking for test links
+        document.querySelectorAll('.test-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                console.log('🧪 Test link clicked:', link.href);
+                console.log('🧪 Link text:', link.textContent);
+            });
+        });
+        
+        console.log('🧪 Deep link test page loaded');
+        console.log('🧪 Current URL:', window.location.href);
+        console.log('🧪 URL parameters:', Object.fromEntries(new URLSearchParams(window.location.search)));
+    </script>
 </body>
 </html>
