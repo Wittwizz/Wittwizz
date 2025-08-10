@@ -1,0 +1,140 @@
+{
+  "project": "Wittwizz Digital - Notion Sync Rules",
+  "version": "1.0.0",
+  "description": "Declarative mapping of events to Notion updates for bidirectional sync",
+  "last_updated": "2025-01-11T00:00:00Z",
+  "sync_policies": {
+    "cursor.task.created": {
+      "trigger": "New Cursor task created",
+      "notion_action": "create_page",
+      "field_mappings": {
+        "Name": "${cursor.task.title}",
+        "Status": "Backlog",
+        "Type": "${cursor.task.type || 'Chore'}",
+        "Priority": "${cursor.task.priority || 'Medium'}",
+        "Owner": "${cursor.task.assignee || 'Himanshu'}",
+        "Cursor Task ID": "${cursor.task.id}",
+        "Notes": "Auto-created from Cursor task"
+      },
+      "conditions": {
+        "required_fields": ["cursor.task.title", "cursor.task.id"],
+        "skip_if": "cursor.task.type == 'internal'"
+      }
+    },
+    "cursor.task.started": {
+      "trigger": "Cursor task marked as started",
+      "notion_action": "update_page",
+      "field_mappings": {
+        "Status": "In Progress",
+        "Notes": "Task started at ${timestamp}"
+      },
+      "conditions": {
+        "required_fields": ["cursor.task.id"],
+        "notion_lookup": "Cursor Task ID = ${cursor.task.id}"
+      }
+    },
+    "github.pr.opened": {
+      "trigger": "New GitHub PR created",
+      "notion_action": "create_or_update",
+      "field_mappings": {
+        "Name": "${github.pr.title}",
+        "Status": "In Progress",
+        "Type": "Feature",
+        "Repo": "${github.pr.repo_url}",
+        "Branch": "${github.pr.head_branch}",
+        "PR": "${github.pr.url}",
+        "Notes": "PR opened by ${github.pr.author}"
+      },
+      "conditions": {
+        "required_fields": ["github.pr.title", "github.pr.url"],
+        "link_existing": "Try to link to existing Cursor task by PR description"
+      }
+    },
+    "lighthouse.report.attached": {
+      "trigger": "Lighthouse report generated",
+      "notion_action": "update_page",
+      "field_mappings": {
+        "LH Perf": "${lighthouse.performance}",
+        "LH A11y": "${lighthouse.accessibility}",
+        "Notes": "Lighthouse: P${lighthouse.performance}/A${lighthouse.accessibility}/B${lighthouse.best_practices}/S${lighthouse.seo}"
+      },
+      "conditions": {
+        "required_fields": ["lighthouse.performance", "lighthouse.accessibility"],
+        "notion_lookup": "PR = ${lighthouse.pr_url} OR Repo = ${lighthouse.repo_url}"
+      }
+    },
+    "github.pr.merged": {
+      "trigger": "GitHub PR merged to main",
+      "notion_action": "update_page",
+      "field_mappings": {
+        "Status": "Done",
+        "Notes": "PR merged at ${timestamp} by ${github.pr.merged_by}"
+      },
+      "conditions": {
+        "required_fields": ["github.pr.url"],
+        "notion_lookup": "PR = ${github.pr.url}"
+      }
+    },
+    "cursor.task.blocked": {
+      "trigger": "Cursor task marked as blocked",
+      "notion_action": "update_page",
+      "field_mappings": {
+        "Status": "Blocked",
+        "Notes": "Task blocked: ${cursor.task.block_reason}"
+      },
+      "conditions": {
+        "required_fields": ["cursor.task.id", "cursor.task.block_reason"],
+        "notion_lookup": "Cursor Task ID = ${cursor.task.id}"
+      }
+    }
+  },
+  "webhook_endpoints": {
+    "cursor_webhook": {
+      "url": "/webhooks/cursor",
+      "events": ["task.created", "task.started", "task.blocked"],
+      "authentication": "Bearer token validation"
+    },
+    "github_webhook": {
+      "url": "/webhooks/github",
+      "events": ["pull_request.opened", "pull_request.merged"],
+      "authentication": "GitHub webhook secret validation"
+    },
+    "lighthouse_webhook": {
+      "url": "/webhooks/lighthouse",
+      "events": ["report.generated"],
+      "authentication": "API key validation"
+    }
+  },
+  "error_handling": {
+    "retry_policy": {
+      "max_retries": 3,
+      "backoff_delay": "exponential",
+      "initial_delay_ms": 1000
+    },
+    "fallback_actions": {
+      "api_failure": "Queue for manual review",
+      "validation_error": "Log error and skip sync",
+      "rate_limit": "Queue for delayed processing"
+    }
+  },
+  "validation_rules": {
+    "required_notion_properties": ["Name", "Status", "Type", "Priority"],
+    "status_transitions": {
+      "Backlog": ["In Progress", "Blocked"],
+      "In Progress": ["Review", "Blocked", "Done"],
+      "Review": ["In Progress", "Done"],
+      "Blocked": ["In Progress", "Backlog"],
+      "Done": []
+    }
+  },
+  "dry_run_config": {
+    "enabled": true,
+    "log_level": "debug",
+    "simulate_events": [
+      "cursor.task.created",
+      "github.pr.opened",
+      "lighthouse.report.attached",
+      "github.pr.merged"
+    ]
+  }
+}
