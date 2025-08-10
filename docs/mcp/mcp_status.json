@@ -1,0 +1,81 @@
+{
+  "project": "Wittwizz Digital — Landing Page v1",
+  "last_updated": "2025-08-10T00:00:00Z",
+  "mcp_servers": [
+    {
+      "server": "filesystem",
+      "configured": false,
+      "last_test": null,
+      "tests": [
+        {
+          "name": "List /content and /docs",
+          "result": "pending",
+          "notes": "Test not yet executed"
+        },
+        {
+          "name": "Create scratch file and delete it",
+          "result": "pending",
+          "notes": "Test not yet executed"
+        }
+      ]
+    },
+    {
+      "server": "git",
+      "configured": false,
+      "last_test": null,
+      "tests": [
+        {
+          "name": "Init repo if missing",
+          "result": "pending",
+          "notes": "Test not yet executed"
+        },
+        {
+          "name": "Create branch mcp-setup",
+          "result": "pending",
+          "notes": "Test not yet executed"
+        },
+        {
+          "name": "Commit a test file",
+          "result": "pending",
+          "notes": "Test not yet executed"
+        }
+      ]
+    },
+    {
+      "server": "github",
+      "configured": false,
+      "last_test": null,
+      "tests": [
+        {
+          "name": "Auth check",
+          "result": "pending",
+          "notes": "Awaiting GITHUB_TOKEN configuration"
+        },
+        {
+          "name": "Create private test issue or draft PR",
+          "result": "pending",
+          "notes": "Awaiting GITHUB_TOKEN configuration"
+        }
+      ]
+    },
+    {
+      "server": "http/openapi",
+      "configured": false,
+      "last_test": null,
+      "tests": [
+        {
+          "name": "GET https://example.org (sanity)",
+          "result": "pending",
+          "notes": "Awaiting HTTP_ALLOWED_HOSTS configuration"
+        }
+      ]
+    }
+  ],
+  "overall_status": "setup_in_progress",
+  "next_actions": [
+    "Test filesystem server connectivity",
+    "Initialize git repository",
+    "Configure GitHub token for API access",
+    "Set HTTP allowed hosts for external API calls"
+  ]
+}
