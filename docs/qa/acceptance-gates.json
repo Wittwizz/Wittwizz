@@ -1,0 +1,29 @@
+{
+  "performance": {
+    "lighthouse_perf_min": 90,
+    "lighthouse_accessibility_min": 95,
+    "cls_max": 0.1,
+    "lcp_ms_lab_max": 2500
+  },
+  "a11y": {
+    "alt_text_coverage_min_pct": 95,
+    "keyboard_nav_required": true
+  },
+  "seo": {
+    "structured_data": [
+      "WebSite",
+      "Organization"
+    ],
+    "sitemap_present": true,
+    "no_broken_links": true
+  },
+  "content": {
+    "reading_grade_max": 8,
+    "banned_words": [
+      "revolutionary",
+      "disrupt",
+      "world-class"
+    ],
+    "claims_need_source": true
+  }
+}

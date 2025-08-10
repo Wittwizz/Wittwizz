@@ -1,0 +1,264 @@
+{
+  "global": {
+    "brand": "Wittwizz Digital",
+    "h1": "Build more. Spend less. Grow faster.",
+    "sub": "AI-powered brand, web, and growth sprints for India's startups.",
+    "primary_cta": {
+      "text": "Plan my 30-day Launch Sprint",
+      "link": "/#lead_form"
+    },
+    "secondary_cta": {
+      "text": "See pricing",
+      "link": "/#packages"
+    },
+    "support_badge": "Founder-speed delivery"
+  },
+  "sections_order": [
+    "hero",
+    "statbar",
+    "services",
+    "packages",
+    "differentiators",
+    "sectors",
+    "cases",
+    "faqs",
+    "lead_form",
+    "footer"
+  ],
+  "statbar": [
+    {
+      "label": "First draft in",
+      "value": "72h",
+      "note": "Sprint items, business days"
+    },
+    {
+      "label": "Alt-text coverage",
+      "value": "95%+",
+      "note": "A11y by default"
+    },
+    {
+      "label": "Lighthouse",
+      "value": "90+/95+",
+      "note": "Perf/A11y gates"
+    }
+  ],
+  "services": [
+    {
+      "title": "Branding & Identity",
+      "summary": "Ship a clean, usable brand system fast.",
+      "inclusions": [
+        "Positioning mini",
+        "Wordmark+colors+type",
+        "6 social templates"
+      ],
+      "from_price": "From ₹60,000",
+      "cta_text": "Enquire",
+      "cta_link": "/#lead_form"
+    },
+    {
+      "title": "Web & CRO",
+      "summary": "Fast 1-pagers to multi-page sites with analytics.",
+      "inclusions": [
+        "Responsive",
+        "SEO basics",
+        "Events & consent"
+      ],
+      "from_price": "From ₹50,000",
+      "cta_text": "Enquire",
+      "cta_link": "/#lead_form"
+    },
+    {
+      "title": "Social & Content",
+      "summary": "Keep a consistent publishing drumbeat.",
+      "inclusions": [
+        "Calendar",
+        "Production",
+        "Weekly analytics"
+      ],
+      "from_price": "From ₹35,000/mo",
+      "cta_text": "Enquire",
+      "cta_link": "/#lead_form"
+    },
+    {
+      "title": "Growth & GTM",
+      "summary": "Experiments, dashboards, and enablement.",
+      "inclusions": [
+        "Tests",
+        "UTMs",
+        "Debriefs"
+      ],
+      "from_price": "From ₹45,000/mo",
+      "cta_text": "Enquire",
+      "cta_link": "/#lead_form"
+    }
+  ],
+  "packages": [
+    {
+      "name": "Startup Launch",
+      "blurb": "Brand kit lite, 1-page site, socials setup, 30-day content plan.",
+      "timeline": "30 days",
+      "from_price": "From ₹1.5L",
+      "includes": [
+        "Workshop",
+        "Brand kit lite",
+        "1-page site",
+        "Analytics",
+        "Content plan"
+      ],
+      "cta_text": "Start Launch Sprint",
+      "cta_link": "/#lead_form"
+    },
+    {
+      "name": "Growth Sprint",
+      "blurb": "Conversion lifts and lead flow with tests and hygiene.",
+      "timeline": "30–45 days",
+      "from_price": "From ₹3.0L",
+      "includes": [
+        "Funnel audit",
+        "CRO fixes",
+        "2 A/B tests",
+        "Lead magnet",
+        "Dashboard"
+      ],
+      "cta_text": "Book Growth Sprint",
+      "cta_link": "/#lead_form"
+    },
+    {
+      "name": "Scale Ready",
+      "blurb": "Brand system, multi-page site, and GTM ops foundation.",
+      "timeline": "45–60 days",
+      "from_price": "From ₹6.0L",
+      "includes": [
+        "Brand system",
+        "5–8 pages",
+        "CMS",
+        "Events spec",
+        "Reporting SOPs"
+      ],
+      "cta_text": "Plan Scale Ready",
+      "cta_link": "/#lead_form"
+    }
+  ],
+  "differentiators": [
+    {
+      "title": "Automation-first",
+      "copy": "We remove repetitive work with tested AI pipelines and SOPs—quality checked."
+    },
+    {
+      "title": "Founder-speed",
+      "copy": "Clear scopes and weekly milestones; same-day replies on weekdays."
+    },
+    {
+      "title": "Clarity & reporting",
+      "copy": "Benchmarks, dashboards, and honest debriefs—no black boxes."
+    }
+  ],
+  "sectors": [
+    {
+      "tab": "D2C",
+      "problem": "Rising CAC and low LP CVR.",
+      "quick_wins": [
+        "CRO fixes",
+        "UGC-style reels",
+        "Email capture"
+      ],
+      "bench_hint": "Meta CPC ₹8–45 (range)."
+    },
+    {
+      "tab": "SaaS",
+      "problem": "Pipeline drought.",
+      "quick_wins": [
+        "Founder-led LinkedIn",
+        "Lead magnets",
+        "Demo flow"
+      ],
+      "bench_hint": "LinkedIn CPC ₹15–70 (range)."
+    },
+    {
+      "tab": "Fintech",
+      "problem": "Trust/compliance signals.",
+      "quick_wins": [
+        "Clarity in copy",
+        "Security badges",
+        "Robust FAQs"
+      ],
+      "bench_hint": "Avoid claims w/o proof."
+    },
+    {
+      "tab": "Healthtech",
+      "problem": "Complex journeys.",
+      "quick_wins": [
+        "Symptom→solution path",
+        "Social proof",
+        "Retention prompts"
+      ],
+      "bench_hint": "Prioritize readability."
+    }
+  ],
+  "cases": [
+    {
+      "headline": "LP CVR +38% in 21 days",
+      "summary": "CRO + faster loads; CTA friction cut.",
+      "cta_text": "Read how",
+      "cta_link": "#"
+    },
+    {
+      "headline": "0→30 leads/mo in 60 days",
+      "summary": "Lead magnet + outbound + calendar.",
+      "cta_text": "See the play",
+      "cta_link": "#"
+    },
+    {
+      "headline": "Brand shipped in 10 days",
+      "summary": "Kit lite + templates.",
+      "cta_text": "View assets",
+      "cta_link": "#"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What if we don't like the first draft?",
+      "a": "Two revision rounds per asset. We define acceptance criteria upfront to avoid surprises."
+    },
+    {
+      "q": "Do you manage our ad spend?",
+      "a": "You keep custody of wallets. We advise, create, and track. Performance fees are optional."
+    },
+    {
+      "q": "How do you use AI?",
+      "a": "For speed and consistency in research, drafts, and QA. Humans own strategy and final quality."
+    },
+    {
+      "q": "Can we cancel?",
+      "a": "Sprints can be cancelled between milestones. Retainers need 30-day notice."
+    }
+  ],
+  "lead_form": {
+    "intro": "Tell us your goal in one line—we'll reply today.",
+    "fields": [
+      "name",
+      "email",
+      "company",
+      "role",
+      "stage",
+      "goal",
+      "timeline",
+      "budget_band",
+      "referral"
+    ],
+    "budget_bands": [
+      "<₹25k",
+      "₹25–75k",
+      "₹75k–₹3L",
+      "₹3L+"
+    ],
+    "submit_text": "Get my plan",
+    "privacy_note": "We don't sell your data. Basic analytics only."
+  },
+  "footer": {
+    "company_blurb": "Efficiency-first growth partner for India's startups.",
+    "address_line": "Gurugram, Haryana, India",
+    "email": "hello@wittwizz.com",
+    "legal": "© 2025 Wittwizz Digital — Terms • Privacy"
+  }
+}
