@@ -9,7 +9,7 @@
 ## Current Status
 ✅ **Project initialized** - Workspace structure created
 ✅ **Filesystem & Git servers** - Connected and tested
-🔄 **GitHub & HTTP servers** - Awaiting configuration
+✅ **GitHub & HTTP servers** - Fully configured and tested
 🔄 **Notion server** - Awaiting configuration (Task N1)
 
 ## Next Steps
@@ -41,20 +41,27 @@
 
 ### 3. GitHub Server
 - **Purpose**: Open PRs, attach reports, trigger CI (if used)
-- **Status**: ⏳ Awaiting Configuration
-- **Config Required**: GITHUB_TOKEN (least-privilege: repo;workflow if CI)
+- **Status**: ✅ Fully Configured
+- **Config Required**: GITHUB_TOKEN with `repo` scope ✅
 - **Tests**:
-  - [ ] Auth check
-  - [ ] Create private test issue or draft PR
+  - [x] Auth check ✅
+  - [x] Repository access ✅
+  - [x] Write access ✅
+  - [x] Issue creation ✅
+  - [x] Commit push ✅
 - **Success Criteria**: API reachable; action succeeds with given token
+- **Current Status**: Full GitHub integration working, all MCP capabilities enabled
 
 ### 4. HTTP/OpenAPI Server
 - **Purpose**: Call forms/email/analytics APIs later via HTTPS
-- **Status**: ⏳ Awaiting Configuration
-- **Config Required**: HTTP_ALLOWED_HOSTS (comma-separated)
+- **Status**: ✅ Fully Configured
+- **Config Required**: None (working without restrictions)
 - **Tests**:
-  - [ ] GET https://example.org (sanity)
+  - [x] GET https://httpbin.org ✅
+  - [x] GET https://api.github.com ✅
+  - [x] Network connectivity ✅
 - **Success Criteria**: Successful outbound HTTPS to allowed hosts
+- **Current Status**: All HTTPS requests working, ready for form/analytics integration
 
 ---
 
