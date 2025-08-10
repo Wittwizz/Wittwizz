@@ -1,213 +1,96 @@
 {
-  "services": {
-    "sprints": {
-      "startup_launch": {
-        "id": "startup_launch",
-        "name": "Startup Launch Sprint",
-        "description": "Brand kit lite, 1-page site, socials setup, 30-day content plan",
-        "price_from_inr": 150000,
-        "price_to_inr": 150000,
-        "timeline_days": 30,
-        "category": "sprints",
-        "popular": false,
-        "includes": [
-          "Workshop",
-          "Brand kit lite",
-          "1-page site",
-          "Analytics",
-          "Content plan"
-        ]
-      },
-      "growth_sprint": {
-        "id": "growth_sprint",
-        "name": "Growth Sprint",
-        "description": "Conversion lifts and lead flow with tests and hygiene",
-        "price_from_inr": 300000,
-        "price_to_inr": 300000,
-        "timeline_days": 45,
-        "category": "sprints",
-        "popular": true,
-        "includes": [
-          "Funnel audit",
-          "CRO fixes",
-          "2 A/B tests",
-          "Lead magnet",
-          "Dashboard"
-        ]
-      },
-      "scale_ready": {
-        "id": "scale_ready",
-        "name": "Scale Ready",
-        "description": "Brand system, multi-page site, and GTM ops foundation",
-        "price_from_inr": 600000,
-        "price_to_inr": 600000,
-        "timeline_days": 60,
-        "category": "sprints",
-        "popular": false,
-        "includes": [
-          "Brand system",
-          "5–8 pages",
-          "CMS",
-          "Events spec",
-          "Reporting SOPs"
-        ]
-      }
+  "presets": [
+    {
+      "id": "starter",
+      "label": "Starter",
+      "tag": "Best for first launch",
+      "days": 7,
+      "includes": ["brand_kit", "one_page_site"],
+      "price_pre_gst": 10000,
+      "discount_pct": 0.05
     },
-    "retainers": {
-      "social_content_ig": {
-        "id": "social_content_ig",
-        "name": "Social Content (Instagram)",
-        "description": "Keep a consistent publishing drumbeat with weekly analytics",
-        "price_from_inr": 35000,
-        "price_to_inr": 35000,
-        "timeline_days": 30,
-        "category": "retainers",
-        "popular": false,
-        "includes": [
-          "Content calendar",
-          "Production",
-          "Weekly analytics",
-          "Community management"
-        ],
-        "monthly": true
-      },
-      "web_care_cro": {
-        "id": "web_care_cro",
-        "name": "Web Care & CRO",
-        "description": "Fast 1-pagers to multi-page sites with ongoing optimization",
-        "price_from_inr": 50000,
-        "price_to_inr": 50000,
-        "timeline_days": 30,
-        "category": "retainers",
-        "popular": false,
-        "includes": [
-          "Responsive design",
-          "SEO basics",
-          "Events & consent",
-          "Performance monitoring"
-        ],
-        "monthly": true
-      },
-      "growth_ops": {
-        "id": "growth_ops",
-        "name": "Growth & GTM",
-        "description": "Experiments, dashboards, and enablement",
-        "price_from_inr": 45000,
-        "price_to_inr": 45000,
-        "timeline_days": 30,
-        "category": "retainers",
-        "popular": false,
-        "includes": [
-          "A/B tests",
-          "UTM tracking",
-          "Debriefs",
-          "Growth dashboard"
-        ],
-        "monthly": true
-      }
+    {
+      "id": "sprint",
+      "label": "Sprint",
+      "tag": "Launch in 30 days",
+      "days": 30,
+      "includes": ["brand_kit", "shopify_basic", "content_kit"],
+      "price_pre_gst": 30000,
+      "discount_pct": 0.10
     },
-    "a_la_carte": {
-      "lp_template": {
-        "id": "lp_template",
-        "name": "Landing Page Template",
-        "description": "Custom landing page template with your branding",
-        "price_from_inr": 25000,
-        "price_to_inr": 35000,
-        "timeline_days": 7,
-        "category": "a_la_carte",
-        "popular": false,
-        "includes": [
-          "Custom design",
-          "Responsive layout",
-          "Basic SEO",
-          "Analytics setup"
-        ]
-      },
-      "brand_kit_lite": {
-        "id": "brand_kit_lite",
-        "name": "Brand Kit Lite",
-        "description": "Essential brand assets: logo, colors, typography",
-        "price_from_inr": 40000,
-        "price_to_inr": 60000,
-        "timeline_days": 14,
-        "category": "a_la_carte",
-        "popular": false,
-        "includes": [
-          "Logo variations",
-          "Color palette",
-          "Typography system",
-          "Social templates"
-        ]
-      },
-      "lead_magnet": {
-        "id": "lead_magnet",
-        "name": "Lead Magnet",
-        "description": "High-converting lead capture system",
-        "price_from_inr": 30000,
-        "price_to_inr": 45000,
-        "timeline_days": 10,
-        "category": "a_la_carte",
-        "popular": false,
-        "includes": [
-          "Lead magnet design",
-          "Landing page",
-          "Email sequence",
-          "Analytics tracking"
-        ]
-      },
-      "analytics_setup": {
-        "id": "analytics_setup",
-        "name": "Analytics Setup",
-        "description": "Complete analytics and tracking implementation",
-        "price_from_inr": 20000,
-        "price_to_inr": 30000,
-        "timeline_days": 5,
-        "category": "a_la_carte",
-        "popular": false,
-        "includes": [
-          "Google Analytics 4",
-          "Event tracking",
-          "Conversion goals",
-          "Dashboard setup"
-        ]
-      }
+    {
+      "id": "scale",
+      "label": "Scale",
+      "tag": "Grow & optimise",
+      "days": 45,
+      "includes": ["brand_kit", "shopify_basic", "content_kit", "seo_lite", "analytics_setup"],
+      "price_pre_gst": 50000,
+      "discount_pct": 0.15
     }
-  },
-  "pricing_rules": {
-    "currency": "INR",
-    "gst_percentage": 18,
-    "rounding": "nearest_100",
-    "bundle_discounts": [
-      {
-        "id": "bundle3",
-        "min_items": 3,
-        "discount_percentage": 15,
-        "applies_to": "all_non_retainer",
-        "description": "15% off when selecting 3+ services"
-      },
-      {
-        "id": "bundle5",
-        "min_items": 5,
-        "discount_percentage": 20,
-        "applies_to": "all_non_retainer",
-        "description": "20% off when selecting 5+ services"
-      }
-    ],
-    "retainer_rules": {
-      "first_month_discount": 10,
-      "applies_if_sprint_selected": true,
-      "description": "10% off first month if any sprint is selected"
+  ],
+  "items": [
+    {
+      "id": "brand_kit",
+      "label": "Brand Kit",
+      "outcome": "A usable identity & starter assets",
+      "includes": ["Logo lockup", "Colors + type", "Social kit (5 templates)"],
+      "days": 3,
+      "price_pre_gst": 8000,
+      "discount_pct": 0.05
     },
-    "rush_delivery": {
-      "percentage": 15,
-      "applies_to": "sprints_only",
-      "description": "15% rush fee for sprint services only"
+    {
+      "id": "one_page_site",
+      "label": "One‑Page Site",
+      "outcome": "A fast, SEO‑ready landing page",
+      "includes": ["Hero + offer + proof", "Contact form", "Analytics wired"],
+      "days": 4,
+      "price_pre_gst": 10000,
+      "discount_pct": 0.05
+    },
+    {
+      "id": "shopify_basic",
+      "label": "Shopify Basic",
+      "outcome": "A live store with 20 products",
+      "includes": ["Theme setup", "Products import", "Basic SEO"],
+      "days": 10,
+      "price_pre_gst": 20000,
+      "discount_pct": 0.10
+    },
+    {
+      "id": "content_kit",
+      "label": "Content Kit",
+      "outcome": "Reusable content to post for 30 days",
+      "includes": ["15 reels prompts", "5 carousels", "Thumbnails & captions"],
+      "days": 7,
+      "price_pre_gst": 8000,
+      "discount_pct": 0.05
+    },
+    {
+      "id": "seo_lite",
+      "label": "SEO Lite",
+      "outcome": "Technical fixes & 30‑day uplift",
+      "includes": ["Core Web Vitals pass", "On‑page fixes", "Indexing"],
+      "days": 7,
+      "price_pre_gst": 7000,
+      "discount_pct": 0.05
+    },
+    {
+      "id": "analytics_setup",
+      "label": "Analytics Setup",
+      "outcome": "See what works in one dashboard",
+      "includes": ["GA4 + events", "Hotjar", "Weekly snapshot"],
+      "days": 2,
+      "price_pre_gst": 3000,
+      "discount_pct": 0.05
     }
-  },
-  "metadata": {
-    "last_updated": "2025-08-11",
-    "version": "1.0",
-    "currency_symbol": "₹",
-    "valid_until": "2025-12-31"
+  ],
+  "rules": {
+    "pricing_display": "ex_gst",
+    "gst_rate": 0.18,
+    "discounts": [
+      { "min_items": 2, "percent": 0.05 },
+      { "min_items": 3, "percent": 0.10 },
+      { "min_items": 5, "percent": 0.15 }
+    ]
   }
 }

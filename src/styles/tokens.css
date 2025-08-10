@@ -3,9 +3,41 @@
   --radius-2xl: 1rem;
   --surface: #0B1426;
   --ink: #1A1A1A;
+  --primary: #2563EB;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* Keep using system UI font via CSS */
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+/* === Wittwizz visual spice tokens & utilities === */
+:root{
+  --brand-primary:#2563EB;
+  --brand-primary-alt:#4F9FFF; /* AA-safe on dark */
+  --surface:#0B1426;
+  --ink:#1A1A1A;
+  --ring: var(--brand-primary);
+  --primary: #2563EB;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+/* Gradient text */
+.gradient-text{background:linear-gradient(90deg,#2563EB 0%,#60A5FA 50%,#93C5FD 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* Soft radial glow */
+.radial-glow{position:relative}
+.radial-glow::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:60%;background:radial-gradient(50% 50% at 50% 50%, rgba(37,99,235,.18) 0%, transparent 70%);filter:blur(40px);pointer-events:none;z-index:-1}
+/* Ribbons (speed persona) */
+.ribbon{position:relative;display:inline-block;padding:.5rem 1rem;border-radius:9999px;background:#FFF1;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12)}
+.ribbon::after{content:"";position:absolute;right:-12px;top:50%;width:12px;height:2px;background:var(--brand-primary);transform:translateY(-50%)}
+/* Hover-lift cards */
+.card{transition:transform .2s, box-shadow .2s}
+.card:hover{transform:translateY(-2px)}
+/* Countdown micro-interaction (gentle, no JS) */
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(.98)}}
+.countdown{animation:pulse 1.8s ease-in-out infinite}
+/* Marquee (optional) */
+@keyframes marquee{to{transform:translateX(-50%)}}
+.marquee{overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-block;animation:marquee 18s linear infinite;will-change:transform}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}

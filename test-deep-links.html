@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Link Test - Wittwizz Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test-link { display: block; margin: 10px 0; padding: 10px; background: #f5f5f5; border-radius: 5px; }
+        .test-link:hover { background: #e5e5e5; }
+        .description { color: #666; font-size: 14px; margin-top: 5px; }
+        .preset { background: #e8f5e8; }
+        .advanced { background: #e8f0f5; }
+        .mixed { background: #f5f0e8; }
+    </style>
+</head>
+<body>
+    <h1>Deep Link Test - Wittwizz Calculator</h1>
+    <p>Test the new deep link schema with these URLs. Each should open the calculator in the correct state.</p>
+    
+    <h2>Quick Mode Tests</h2>
+    
+    <a href="index.html?mode=quick" class="test-link preset">
+        <strong>Quick Mode Only</strong>
+        <div class="description">Should open calculator in quick mode with no presets selected</div>
+    </a>
+    
+    <a href="index.html?mode=quick&pick=starter" class="test-link preset">
+        <strong>Quick Mode + Starter Preset</strong>
+        <div class="description">Should open in quick mode with starter preset selected</div>
+    </a>
+    
+    <a href="index.html?mode=quick&pick=sprint" class="test-link preset">
+        <strong>Quick Mode + Sprint Preset</strong>
+        <div class="description">Should open in quick mode with sprint preset selected</div>
+    </a>
+    
+    <a href="index.html?mode=quick&pick=scale" class="test-link preset">
+        <strong>Quick Mode + Scale Preset</strong>
+        <div class="description">Should open in quick mode with scale preset selected</div>
+    </a>
+    
+    <h2>Advanced Mode Tests</h2>
+    
+    <a href="index.html?mode=advanced" class="test-link advanced">
+        <strong>Advanced Mode Only</strong>
+        <div class="description">Should open calculator in advanced mode with no services selected</div>
+    </a>
+    
+    <a href="index.html?mode=advanced&pick=brand_kit" class="test-link advanced">
+        <strong>Advanced Mode + Brand Kit</strong>
+        <div class="description">Should open in advanced mode with brand kit selected</div>
+    </a>
+    
+    <a href="index.html?mode=advanced&pick=brand_kit,one_page_site" class="test-link advanced">
+        <strong>Advanced Mode + Multiple Services</strong>
+        <div class="description">Should open in advanced mode with brand kit and one-page site selected</div>
+    </a>
+    
+    <h2>Backward Compatibility Tests</h2>
+    
+    <a href="index.html?pick=starter" class="test-link mixed">
+        <strong>Legacy: Preset Only (No Mode)</strong>
+        <div class="description">Should automatically detect quick mode and select starter preset</div>
+    </a>
+    
+    <a href="index.html?pick=brand_kit" class="test-link mixed">
+        <strong>Legacy: Service Only (No Mode)</strong>
+        <div class="description">Should default to advanced mode and select brand kit</div>
+    </a>
+    
+    <a href="index.html?pick=brand_kit,one_page_site" class="test-link mixed">
+        <strong>Legacy: Multiple Services (No Mode)</strong>
+        <div class="description">Should default to advanced mode and select multiple services</div>
+    </a>
+    
+    <h2>Edge Cases</h2>
+    
+    <a href="index.html?mode=invalid&pick=starter" class="test-link mixed">
+        <strong>Invalid Mode + Preset</strong>
+        <div class="description">Should ignore invalid mode and detect preset correctly</div>
+    </a>
+    
+    <a href="index.html?mode=quick&pick=invalid_service" class="test-link mixed">
+        <strong>Quick Mode + Invalid Service</strong>
+        <div class="description">Should open in quick mode with no items selected</div>
+    </a>
+    
+    <a href="index.html?mode=advanced&pick=starter,invalid_service" class="test-link mixed">
+        <strong>Advanced Mode + Mixed Valid/Invalid</strong>
+        <div class="description">Should open in advanced mode with only valid services selected</div>
+    </a>
+    
+    <h2>Expected Behavior</h2>
+    <ul>
+        <li><strong>Mode Parameter:</strong> Always respected when present</li>
+        <li><strong>Preset Detection:</strong> Automatically sets mode to 'quick' when preset ID is first in pick list</li>
+        <li><strong>Service Detection:</strong> Defaults to 'advanced' mode when no presets detected</li>
+        <li><strong>URL Sync:</strong> URL updates in real-time as user changes mode or selections</li>
+        <li><strong>Shareable URLs:</strong> Copy button generates URLs that restore exact state</li>
+    </ul>
+    
+    <h2>Testing Steps</h2>
+    <ol>
+        <li>Click each test link above</li>
+        <li>Verify the calculator opens in the correct mode</li>
+        <li>Verify the correct items are selected</li>
+        <li>Change mode or selections and verify URL updates</li>
+        <li>Copy the shareable URL and test it in a new tab</li>
+        <li>Test browser back/forward navigation</li>
+    </ol>
+</body>
+</html>

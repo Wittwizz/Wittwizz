@@ -11,6 +11,10 @@
   .btn-ghost {
     @apply bg-transparent text-ink hover:bg-gray-100 focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
+  
+  .shadow-card {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* Focus management for accessibility */

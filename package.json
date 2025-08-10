@@ -10,23 +10,26 @@
     "lh:ci": "lighthouse http://localhost:4173 --only-categories=performance,accessibility,seo,best-practices --output=json --output-path=./reports/lh.json --throttling.rttMs=150 --throttling.throughputKbps=1600 --throttling.cpuSlowdownMultiplier=2",
     "axe:ci": "axe http://localhost:4173 --exit 1",
     "size:report": "rollup-plugin-visualizer --sourcemap false --gzip",
-    "test:gates": "npm run build && npm run preview & Start-Sleep -Seconds 2 && npm run lh:ci && npm run axe:ci"
+    "test:gates": "powershell -ExecutionPolicy Bypass -File test-gates.ps1"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.0.5",
-    "@radix-ui/react-tooltip": "1.0.7",
     "@radix-ui/react-slot": "1.0.2",
+    "@radix-ui/react-tooltip": "1.0.7",
+    "clsx": "^2.1.1",
     "lucide-react": "0.477.0",
     "tailwindcss": "3.4.10"
   },
   "devDependencies": {
-    "@axe-core/cli": "4.7.3",
-    "lighthouse": "12.3.0",
-    "rollup-plugin-visualizer": "5.12.0",
-    "vite": "^5.0.0",
+    "@axe-core/cli": "^4.10.2",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32"
+    "lighthouse": "12.3.0",
+    "postcss": "^8.4.32",
+    "rollup-plugin-visualizer": "5.12.0",
+    "vite": "^5.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
