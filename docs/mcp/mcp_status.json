@@ -69,13 +69,41 @@
           "notes": "Awaiting HTTP_ALLOWED_HOSTS configuration"
         }
       ]
+    },
+    {
+      "server": "notion",
+      "configured": false,
+      "last_test": null,
+      "tests": [
+        {
+          "name": "Environment Variables Check",
+          "result": "pending",
+          "notes": "Verify NOTION_API_KEY and NOTION_DB_ID are set"
+        },
+        {
+          "name": "API Connectivity Test",
+          "result": "pending",
+          "notes": "GET /databases/${NOTION_DB_ID} returns 200"
+        },
+        {
+          "name": "Page Creation Test",
+          "result": "pending",
+          "notes": "Create test page 'Cursor Handshake' with Status='In Progress'"
+        },
+        {
+          "name": "Page Update Test",
+          "result": "pending",
+          "notes": "Update test page Status to 'Done' and set Notes='Handshake OK'"
+        }
+      ]
     }
   ],
   "overall_status": "partially_configured",
   "next_actions": [
     "Configure GitHub token for API access",
     "Set HTTP allowed hosts for external API calls",
-    "Test GitHub and HTTP server connectivity",
-    "Proceed to Landing Page v1 work order (Task 1)"
+    "Configure Notion API key and database ID",
+    "Test all MCP server connectivity",
+    "Proceed to Landing Page v1 work order (Task 1) and Notion sync (Task N2)"
   ]
 }

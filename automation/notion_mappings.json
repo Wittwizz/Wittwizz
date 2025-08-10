@@ -1,0 +1,87 @@
+{
+  "database_id": "${NOTION_DB_ID}",
+  "version": "1.0.0",
+  "description": "Maps Cursor events and fields to Notion database properties",
+  "status_map": {
+    "created": "Backlog",
+    "in_progress": "In Progress",
+    "review": "Review",
+    "blocked": "Blocked",
+    "done": "Done"
+  },
+  "field_map": {
+    "name": "Name",
+    "status": "Status",
+    "type": "Type",
+    "priority": "Priority",
+    "owner": "Owner",
+    "due": "Due",
+    "repo": "Repo",
+    "branch": "Branch",
+    "pr_url": "PR",
+    "lh_perf": "LH Perf",
+    "lh_a11y": "LH A11y",
+    "cursor_task_id": "Cursor Task ID",
+    "notes": "Notes"
+  },
+  "defaults": {
+    "type": "Chore",
+    "priority": "Medium",
+    "owner": "Himanshu"
+  },
+  "automation_rules": {
+    "cursor_task_created": {
+      "trigger": "New Cursor task",
+      "actions": [
+        "Create Notion page with Status='Backlog'",
+        "Set Type based on task category",
+        "Set Priority based on urgency",
+        "Set Owner to assigned person"
+      ]
+    },
+    "cursor_task_updated": {
+      "trigger": "Cursor task status change",
+      "actions": [
+        "Update Notion page Status",
+        "Update Notes with latest context",
+        "Set Due date if specified"
+      ]
+    },
+    "github_pr_opened": {
+      "trigger": "New GitHub PR",
+      "actions": [
+        "Create or update Notion page",
+        "Set Status='In Progress'",
+        "Set PR URL",
+        "Set Branch name",
+        "Link to existing Cursor task if found"
+      ]
+    },
+    "github_pr_merged": {
+      "trigger": "GitHub PR merged",
+      "actions": [
+        "Update Notion page Status='Done'",
+        "Add merge timestamp to Notes",
+        "Update Repo and Branch info"
+      ]
+    },
+    "lighthouse_report": {
+      "trigger": "Lighthouse CI report",
+      "actions": [
+        "Update LH Perf and LH A11y scores",
+        "Set Status='Done' if scores meet gates",
+        "Set Status='Review' if scores below threshold"
+      ]
+    }
+  },
+  "webhook_endpoints": {
+    "cursor_webhook": "/webhooks/cursor",
+    "github_webhook": "/webhooks/github",
+    "lighthouse_webhook": "/webhooks/lighthouse"
+  },
+  "rate_limits": {
+    "max_requests_per_minute": 60,
+    "retry_after_seconds": 60,
+    "max_retries": 3
+  }
+}

@@ -10,6 +10,7 @@
 ✅ **Project initialized** - Workspace structure created
 ✅ **Filesystem & Git servers** - Connected and tested
 🔄 **GitHub & HTTP servers** - Awaiting configuration
+🔄 **Notion server** - Awaiting configuration (Task N1)
 
 ## Next Steps
 1. Verify MCP server connectivity (filesystem, git, github, http/openapi)
@@ -73,8 +74,18 @@
 
 ## Future MCP Servers (Enable Later)
 - **Browser/Scraper**: Competitor snapshots with robots.txt respect
-- **Notion**: Editorial approvals or simple CMS
 - **Google Sheets**: Lightweight tables (keywords, FAQs, experiments)
+
+## Notion MCP Server (Task N1)
+- **Purpose**: Progress tracking and task synchronization
+- **Status**: ⏳ Awaiting Configuration
+- **Config Required**: NOTION_API_KEY, NOTION_DB_ID
+- **Tests**:
+  - [ ] Environment variables check
+  - [ ] API connectivity test
+  - [ ] Page creation and update tests
+- **Success Criteria**: Full CRUD operations on Notion database
+- **Next**: Proceed to Task N2 (Sync rules) after successful setup
 
 ---
 
