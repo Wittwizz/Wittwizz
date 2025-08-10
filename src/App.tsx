@@ -81,9 +81,9 @@ function App() {
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Scale Your Startup?
             </h3>
-            <p className="text-xl mb-8 text-blue-100">
-              Let's discuss how we can help you achieve your growth goals.
-            </p>
+                               <p className="text-xl mb-8 text-blue-50">
+                     Let's discuss how we can help you achieve your growth goals.
+                   </p>
             <Dialog>
               <DialogTrigger asChild>
                 <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
@@ -115,9 +115,9 @@ function App() {
             <p className="text-gray-400 mb-6">
               AI-powered brand, web, and growth partner for India's startups.
             </p>
-            <div className="text-sm text-gray-500">
-              © 2025 Wittwizz Digital. All rights reserved.
-            </div>
+                             <div className="text-sm text-gray-400">
+                   © 2025 Wittwizz Digital. All rights reserved.
+                 </div>
           </div>
         </div>
       </footer>

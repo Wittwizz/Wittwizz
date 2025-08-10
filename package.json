@@ -8,9 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "lh:ci": "lighthouse http://localhost:4173 --only-categories=performance,accessibility,seo,best-practices --output=json --output-path=./reports/lh.json --throttling.rttMs=150 --throttling.throughputKbps=1600 --throttling.cpuSlowdownMultiplier=2",
-    "axe:ci": "axe http://localhost:4173 --exit 1 --threshold 0",
+    "axe:ci": "axe http://localhost:4173 --exit 1",
     "size:report": "rollup-plugin-visualizer --sourcemap false --gzip",
-    "test:gates": "npm run build && npm run preview & sleep 2 && npm run lh:ci && npm run axe:ci"
+    "test:gates": "npm run build && npm run preview & Start-Sleep -Seconds 2 && npm run lh:ci && npm run axe:ci"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.0.5",
