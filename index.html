@@ -265,6 +265,209 @@
         </div>
     </section>
 
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator" onmouseenter="trackEvent('evt_section_view', 'calculator')">
+        <div class="container">
+            <h2 class="section-title">Build Your Own Package</h2>
+            <p class="section-subtitle">Pick services and see an instant estimate.</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-left">
+                    <div class="service-groups">
+                        <!-- Sprints Group -->
+                        <fieldset class="service-group">
+                            <legend class="group-title">Sprints</legend>
+                            <div class="service-items">
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="startup_launch" data-price="150000" data-category="sprints">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Startup Launch Sprint</h4>
+                                        <p>Brand kit lite, 1-page site, socials setup, 30-day content plan</p>
+                                        <span class="service-price">₹1.5L</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="growth_sprint" data-price="300000" data-category="sprints" data-popular="true">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Growth Sprint</h4>
+                                        <p>Conversion lifts and lead flow with tests and hygiene</p>
+                                        <span class="service-price">₹3.0L</span>
+                                        <span class="popular-badge">Most Popular</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="scale_ready" data-price="600000" data-category="sprints">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Scale Ready</h4>
+                                        <p>Brand system, multi-page site, and GTM ops foundation</p>
+                                        <span class="service-price">₹6.0L</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- Retainers Group -->
+                        <fieldset class="service-group">
+                            <legend class="group-title">Retainers</legend>
+                            <div class="service-items">
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="social_content_ig" data-price="35000" data-category="retainers" data-monthly="true">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Social Content (Instagram)</h4>
+                                        <p>Keep a consistent publishing drumbeat with weekly analytics</p>
+                                        <span class="service-price">₹35K/mo</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="web_care_cro" data-price="50000" data-category="retainers" data-monthly="true">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Web Care & CRO</h4>
+                                        <p>Fast 1-pagers to multi-page sites with ongoing optimization</p>
+                                        <span class="service-price">₹50K/mo</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="growth_ops" data-price="45000" data-category="retainers" data-monthly="true">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Growth & GTM</h4>
+                                        <p>Experiments, dashboards, and enablement</p>
+                                        <span class="service-price">₹45K/mo</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- A-la-carte Group -->
+                        <fieldset class="service-group">
+                            <legend class="group-title">A-la-carte</legend>
+                            <div class="service-items">
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="lp_template" data-price="25000" data-category="a_la_carte">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Landing Page Template</h4>
+                                        <p>Custom landing page template with your branding</p>
+                                        <span class="service-price">₹25K</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="brand_kit_lite" data-price="40000" data-category="a_la_carte">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Brand Kit Lite</h4>
+                                        <p>Essential brand assets: logo, colors, typography</p>
+                                        <span class="service-price">₹40K</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="lead_magnet" data-price="30000" data-category="a_la_carte">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Lead Magnet</h4>
+                                        <p>High-converting lead capture system</p>
+                                        <span class="service-price">₹30K</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="service-item">
+                                    <input type="checkbox" name="service" value="analytics_setup" data-price="20000" data-category="a_la_carte">
+                                    <span class="checkbox-custom"></span>
+                                    <div class="service-info">
+                                        <h4>Analytics Setup</h4>
+                                        <p>Complete analytics and tracking implementation</p>
+                                        <span class="service-price">₹20K</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- Calculator Options -->
+                        <div class="calculator-options">
+                            <div class="option-group">
+                                <label class="option-label">
+                                    <span>Retainer months:</span>
+                                    <input type="range" id="retainer-months" min="1" max="12" value="3" step="1" aria-describedby="retainer-months-value">
+                                    <span id="retainer-months-value" class="option-value">3 months</span>
+                                </label>
+                            </div>
+                            
+                            <div class="option-group">
+                                <label class="option-label">
+                                    <input type="checkbox" id="rush-delivery">
+                                    <span class="checkbox-custom"></span>
+                                    <span>Rush delivery (+15% on sprints)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-right">
+                    <div class="summary-panel" id="summary-panel">
+                        <h3>Your Estimate</h3>
+                        
+                        <div class="summary-details">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">₹0</span>
+                            </div>
+                            <div class="summary-row" id="bundle-savings-row" style="display: none;">
+                                <span>Bundle savings:</span>
+                                <span id="bundle-savings">-₹0</span>
+                            </div>
+                            <div class="summary-row" id="rush-fee-row" style="display: none;">
+                                <span>Rush fee:</span>
+                                <span id="rush-fee">+₹0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>GST (18%):</span>
+                                <span id="gst">₹0</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Estimated total:</span>
+                                <span id="total">₹0</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-actions">
+                            <button class="btn btn-secondary" id="download-estimate" onclick="downloadEstimate()">Download estimate</button>
+                            <button class="btn btn-primary" id="submit-estimate" onclick="submitEstimate()">Send & book call</button>
+                        </div>
+
+                        <div class="summary-disclaimers">
+                            <p><strong>Prices shown are exclusive of GST (18%). Final invoice will include applicable GST.</strong></p>
+                            <p>This estimate is valid for 30 days from the calculation date.</p>
+                            <p>This calculator provides an indicative estimate. Final pricing may vary based on a written scope after a 30-minute discovery call.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Bottom Bar -->
+            <div class="mobile-summary-bar" id="mobile-summary-bar">
+                <div class="mobile-summary-content">
+                    <div class="mobile-total">
+                        <span>Total:</span>
+                        <span id="mobile-total">₹0</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="submitEstimate()">Book Call</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Differentiators Section -->
     <section id="differentiators" class="differentiators" onmouseenter="trackEvent('evt_section_view', 'differentiators')">
         <div class="container">
@@ -669,6 +872,308 @@
         document.querySelectorAll('section[id]').forEach(section => {
             sectionObserver.observe(section);
         });
+        
+        // Calculator functionality
+        class PackageCalculator {
+            constructor() {
+                this.selectedServices = new Set();
+                this.retainerMonths = 3;
+                this.rushDelivery = false;
+                this.gstPercentage = 18;
+                this.bundleDiscounts = [
+                    { minItems: 3, percentage: 15 },
+                    { minItems: 5, percentage: 20 }
+                ];
+                
+                this.initializeEventListeners();
+                this.updateSummary();
+            }
+            
+            initializeEventListeners() {
+                // Service checkboxes
+                document.querySelectorAll('input[name="service"]').forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        if (checkbox.checked) {
+                            this.selectedServices.add(checkbox.value);
+                            trackEvent('evt_service_selected', { service_id: checkbox.value, selected: true });
+                        } else {
+                            this.selectedServices.delete(checkbox.value);
+                            trackEvent('evt_service_selected', { service_id: checkbox.value, selected: false });
+                        }
+                        this.updateSummary();
+                    });
+                });
+                
+                // Retainer months slider
+                const retainerSlider = document.getElementById('retainer-months');
+                const retainerValue = document.getElementById('retainer-months-value');
+                if (retainerSlider && retainerValue) {
+                    retainerSlider.addEventListener('input', (e) => {
+                        this.retainerMonths = parseInt(e.target.value);
+                        retainerValue.textContent = `${this.retainerMonths} month${this.retainerMonths > 1 ? 's' : ''}`;
+                        trackEvent('evt_calc_change', { months: this.retainerMonths, rush: this.rushDelivery });
+                        this.updateSummary();
+                    });
+                }
+                
+                // Rush delivery toggle
+                const rushToggle = document.getElementById('rush-delivery');
+                if (rushToggle) {
+                    rushToggle.addEventListener('change', (e) => {
+                        this.rushDelivery = e.target.checked;
+                        trackEvent('evt_calc_change', { months: this.retainerMonths, rush: this.rushDelivery });
+                        this.updateSummary();
+                    });
+                }
+            }
+            
+            calculateSubtotal() {
+                let subtotal = 0;
+                const serviceData = this.getServiceData();
+                
+                this.selectedServices.forEach(serviceId => {
+                    const service = serviceData[serviceId];
+                    if (service) {
+                        if (service.monthly) {
+                            subtotal += service.price_from_inr * this.retainerMonths;
+                        } else {
+                            subtotal += service.price_from_inr;
+                        }
+                    }
+                });
+                
+                return subtotal;
+            }
+            
+            calculateBundleDiscount(subtotal) {
+                const nonRetainerServices = Array.from(this.selectedServices).filter(serviceId => {
+                    const service = this.getServiceData()[serviceId];
+                    return service && !service.monthly;
+                });
+                
+                if (nonRetainerServices.length >= 5) {
+                    return subtotal * 0.20; // 20% off for 5+ services
+                } else if (nonRetainerServices.length >= 3) {
+                    return subtotal * 0.15; // 15% off for 3+ services
+                }
+                
+                return 0;
+            }
+            
+            calculateRushFee(subtotal) {
+                if (!this.rushDelivery) return 0;
+                
+                let sprintSubtotal = 0;
+                const serviceData = this.getServiceData();
+                
+                this.selectedServices.forEach(serviceId => {
+                    const service = serviceData[serviceId];
+                    if (service && service.category === 'sprints') {
+                        sprintSubtotal += service.price_from_inr;
+                    }
+                });
+                
+                return sprintSubtotal * 0.15; // 15% rush fee on sprints only
+            }
+            
+            calculateGST(subtotal, bundleDiscount, rushFee) {
+                const taxableAmount = subtotal - bundleDiscount + rushFee;
+                return Math.round(taxableAmount * (this.gstPercentage / 100));
+            }
+            
+            roundToNearest100(amount) {
+                return Math.round(amount / 100) * 100;
+            }
+            
+            getServiceData() {
+                return {
+                    startup_launch: { price_from_inr: 150000, category: 'sprints', monthly: false },
+                    growth_sprint: { price_from_inr: 300000, category: 'sprints', monthly: false },
+                    scale_ready: { price_from_inr: 600000, category: 'sprints', monthly: false },
+                    social_content_ig: { price_from_inr: 35000, category: 'retainers', monthly: true },
+                    web_care_cro: { price_from_inr: 50000, category: 'retainers', monthly: true },
+                    growth_ops: { price_from_inr: 45000, category: 'retainers', monthly: true },
+                    lp_template: { price_from_inr: 25000, category: 'a_la_carte', monthly: false },
+                    brand_kit_lite: { price_from_inr: 40000, category: 'a_la_carte', monthly: false },
+                    lead_magnet: { price_from_inr: 30000, category: 'a_la_carte', monthly: false },
+                    analytics_setup: { price_from_inr: 20000, category: 'a_la_carte', monthly: false }
+                };
+            }
+            
+            updateSummary() {
+                const subtotal = this.calculateSubtotal();
+                const bundleDiscount = this.calculateBundleDiscount(subtotal);
+                const rushFee = this.calculateRushFee(subtotal);
+                const gst = this.calculateGST(subtotal, bundleDiscount, rushFee);
+                const total = this.roundToNearest100(subtotal - bundleDiscount + rushFee + gst);
+                
+                // Update display
+                document.getElementById('subtotal').textContent = `₹${this.formatCurrency(subtotal)}`;
+                document.getElementById('mobile-total').textContent = `₹${this.formatCurrency(total)}`;
+                
+                // Show/hide bundle savings
+                const bundleRow = document.getElementById('bundle-savings-row');
+                const bundleSavings = document.getElementById('bundle-savings');
+                if (bundleDiscount > 0) {
+                    bundleRow.style.display = 'flex';
+                    bundleSavings.textContent = `-₹${this.formatCurrency(bundleDiscount)}`;
+                    trackEvent('evt_bundle_discount_shown', { discount_id: 'bundle', savings_inr: bundleDiscount });
+                } else {
+                    bundleRow.style.display = 'none';
+                }
+                
+                // Show/hide rush fee
+                const rushRow = document.getElementById('rush-fee-row');
+                const rushFeeElement = document.getElementById('rush-fee');
+                if (rushFee > 0) {
+                    rushRow.style.display = 'flex';
+                    rushFeeElement.textContent = `+₹${this.formatCurrency(rushFee)}`;
+                } else {
+                    rushRow.style.display = 'none';
+                }
+                
+                // Update GST and total
+                document.getElementById('gst').textContent = `₹${this.formatCurrency(gst)}`;
+                document.getElementById('total').textContent = `₹${this.formatCurrency(total)}`;
+                
+                // Track calculator completion
+                if (this.selectedServices.size > 0) {
+                    trackEvent('evt_calc_complete', { estimate_total_inr: total, items_count: this.selectedServices.size });
+                }
+                
+                // Update URL for deep linking
+                this.updateURL();
+            }
+            
+            updateURL() {
+                const params = new URLSearchParams();
+                
+                if (this.selectedServices.size > 0) {
+                    params.set('items', Array.from(this.selectedServices).join(','));
+                }
+                
+                if (this.retainerMonths !== 3) {
+                    params.set('months', this.retainerMonths.toString());
+                }
+                
+                if (this.rushDelivery) {
+                    params.set('rush', 'true');
+                }
+                
+                const newURL = params.toString() ? `#calculator?${params.toString()}` : '#calculator';
+                history.replaceState(null, '', newURL);
+            }
+            
+            restoreFromURL() {
+                const hash = window.location.hash;
+                if (!hash.includes('calculator')) return;
+                
+                const params = new URLSearchParams(hash.split('?')[1] || '');
+                
+                // Restore selected services
+                const items = params.get('items');
+                if (items) {
+                    const serviceIds = items.split(',');
+                    serviceIds.forEach(serviceId => {
+                        const checkbox = document.querySelector(`input[name="service"][value="${serviceId}"]`);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            this.selectedServices.add(serviceId);
+                        }
+                    });
+                }
+                
+                // Restore retainer months
+                const months = params.get('months');
+                if (months) {
+                    this.retainerMonths = parseInt(months);
+                    const slider = document.getElementById('retainer-months');
+                    const value = document.getElementById('retainer-months-value');
+                    if (slider && value) {
+                        slider.value = this.retainerMonths;
+                        value.textContent = `${this.retainerMonths} month${this.retainerMonths > 1 ? 's' : ''}`;
+                    }
+                }
+                
+                // Restore rush delivery
+                const rush = params.get('rush');
+                if (rush === 'true') {
+                    this.rushDelivery = true;
+                    const toggle = document.getElementById('rush-delivery');
+                    if (toggle) {
+                        toggle.checked = true;
+                    }
+                }
+                
+                // Update summary after restoration
+                this.updateSummary();
+            }
+            
+            formatCurrency(amount) {
+                if (amount >= 100000) {
+                    return (amount / 100000).toFixed(1) + 'L';
+                } else if (amount >= 1000) {
+                    return (amount / 1000).toFixed(0) + 'K';
+                }
+                return amount.toLocaleString('en-IN');
+            }
+        }
+        
+        // Initialize calculator when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.packageCalculator = new PackageCalculator();
+        });
+        
+        // Download estimate function
+        function downloadEstimate() {
+            const calculator = window.packageCalculator;
+            if (!calculator) return;
+            
+            const selectedServices = Array.from(calculator.selectedServices);
+            const total = document.getElementById('total').textContent;
+            
+            // Create estimate data
+            const estimate = {
+                date: new Date().toISOString(),
+                selectedServices,
+                total,
+                retainerMonths: calculator.retainerMonths,
+                rushDelivery: calculator.rushDelivery,
+                gstPercentage: calculator.gstPercentage
+            };
+            
+            // In production, this would generate a PDF
+            console.log('Download estimate:', estimate);
+            trackEvent('evt_calc_complete', { estimate_total_inr: total, items_count: selectedServices.length });
+            
+            alert('Estimate download would be generated here. In production, this creates a PDF.');
+        }
+        
+        // Submit estimate function
+        function submitEstimate() {
+            const calculator = window.packageCalculator;
+            if (!calculator) return;
+            
+            const selectedServices = Array.from(calculator.selectedServices);
+            const total = document.getElementById('total').textContent;
+            
+            if (selectedServices.length === 0) {
+                alert('Please select at least one service to continue.');
+                return;
+            }
+            
+            // Track consultation request
+            trackEvent('evt_consultation_request', { 
+                estimate_total_inr: total, 
+                items_count: selectedServices.length 
+            });
+            
+            // Scroll to lead form
+            document.getElementById('lead_form').scrollIntoView({ behavior: 'smooth' });
+            
+            // Pre-fill form with selected services (in production)
+            console.log('Submitting estimate for services:', selectedServices, 'Total:', total);
+        }
     </script>
 </body>
 </html>
