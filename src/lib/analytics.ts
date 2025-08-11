@@ -170,3 +170,4 @@ export const getAnalyticsStatus = (): Record<string, boolean> => {
     customEndpoint: !!(window as any).WITTWIZZ_ANALYTICS_ENDPOINT
   };
 };
+
