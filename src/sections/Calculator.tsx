@@ -71,7 +71,7 @@ export default function Calculator() {
         console.log('📊 Loading pricing data...');
         
         // Try to fetch the data
-        const response = await fetch('/content/pricing/services.json');
+        const response = await fetch('/Wittwizz/content/pricing/services.json');
         if (response.ok) {
           const jsonData = await response.json();
           console.log('✅ Data loaded successfully:', jsonData);
