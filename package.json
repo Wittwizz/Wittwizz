@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
     "preview": "vite preview",
     "lh:ci": "lighthouse http://localhost:4173 --only-categories=performance,accessibility,seo,best-practices --output=json --output-path=./reports/lh.json --throttling.rttMs=150 --throttling.throughputKbps=1600 --throttling.cpuSlowdownMultiplier=2",
     "axe:ci": "axe http://localhost:4173 --exit 1",
