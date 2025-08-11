@@ -1,7 +1,7 @@
 {
   "name": "wittwizz-landing-page",
   "version": "1.0.0",
-  "description": "Wittwizz Digital Landing Page v1 with MCP allowlist imports",
+  "description": "Wittwizz Digital Landing Page v1 with MCP allowlist imports - HOTFIX DEPLOYMENT",
   "type": "module",
   "scripts": {
     "dev": "vite",
