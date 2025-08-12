@@ -1,0 +1,93 @@
+/**
+ * Reduced motion support for accessibility
+ * Disables animations for users who prefer reduced motion
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations and transitions */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Ensure no transform animations */
+  * {
+    transform: none !important;
+  }
+  
+  /* Disable specific animation classes */
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-scale,
+  .animate-hero,
+  .animate-bounce,
+  .animate-pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Disable hover effects that might cause motion */
+  .hover\:scale-105:hover,
+  .hover\:-translate-y-1:hover,
+  .hover\:shadow-lg:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+  
+  /* Disable focus animations */
+  .focus\:scale-105:focus,
+  .focus\:-translate-y-1:focus {
+    transform: none !important;
+  }
+  
+  /* Disable active state animations */
+  .active\:scale-95:active,
+  .active\:scale-98:active {
+    transform: none !important;
+  }
+  
+  /* Ensure skeleton loading doesn't pulse */
+  .skeleton,
+  .skeleton-pulse {
+    animation: none !important;
+    background: #e5e7eb !important;
+  }
+  
+  /* Disable micro-interactions */
+  .toggle-micro,
+  .validation-nudge {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  /* Disable page transitions */
+  .page-transition,
+  .fade-enter,
+  .fade-exit {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support for reduced motion */
+@media (prefers-reduced-motion: reduce) and (prefers-contrast: high) {
+  /* Ensure focus indicators are still visible */
+  *:focus-visible {
+    outline: 3px solid #000 !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Maintain button states for accessibility */
+  button:active,
+  button:focus {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+}
+
+
+

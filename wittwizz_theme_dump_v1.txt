@@ -1,0 +1,712 @@
+WITTWIZZ DIGITAL - THEME BASELINE DUMP v1
+============================================
+
+BRAND: Wittwizz Digital
+MISSION: Efficiency-first founder-friendly agency website
+PALETTE: Cobalt primary with deep-navy surfaces, minimal gold accent, high contrast and a11y-first
+PERFORMANCE: perf>=90, a11y>=95, cls<0.1, lcp<=2.5s
+
+================================================================================
+1) TOKENS: CSS Variables (Root + .dark)
+================================================================================
+
+/* === WITTWIZZ DESIGN TOKENS === */
+:root {
+  /* Primary Colors - Cobalt Blue */
+  --kk-primary: #2563EB;
+  --kk-primary-foreground: #FFFFFF;
+  --kk-primary-alt: #4F9FFF;
+  --kk-primary-muted: #DBEAFE;
+  
+  /* Surface Colors - Deep Navy */
+  --kk-surface: #0B1426;
+  --kk-surface-2: #111827;
+  --kk-surface-3: #1F2937;
+  --kk-surface-4: #374151;
+  
+  /* Text Colors - High Contrast */
+  --kk-text: #1A1A1A;
+  --kk-text-muted: #64748B;
+  --kk-text-subtle: #94A3B8;
+  
+  /* Accent Colors - Minimal Gold */
+  --kk-accent: #B89F5D;
+  --kk-accent-muted: #FEF3C7;
+  
+  /* Semantic Colors */
+  --kk-success: #16A34A;
+  --kk-warning: #D97706;
+  --kk-danger: #DC2626;
+  
+  /* Borders & Rings */
+  --kk-border: #E2E8F0;
+  --kk-border-strong: #CBD5E1;
+  --kk-ring: #2563EB;
+  
+  /* Shadows */
+  --kk-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --kk-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --kk-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --kk-shadow-card: 0 6px 24px rgba(0, 0, 0, 0.08);
+  
+  /* Spacing */
+  --kk-space-xs: 0.5rem;
+  --kk-space-sm: 0.75rem;
+  --kk-space-md: 1rem;
+  --kk-space-lg: 1.5rem;
+  --kk-space-xl: 2rem;
+  --kk-space-2xl: 3rem;
+  
+  /* Border Radius */
+  --kk-radius-sm: 0.375rem;
+  --kk-radius: 0.5rem;
+  --kk-radius-lg: 0.75rem;
+  --kk-radius-xl: 1rem;
+  --kk-radius-2xl: 1.5rem;
+  
+  /* Typography */
+  --kk-font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --kk-font-size-xs: 0.75rem;
+  --kk-font-size-sm: 0.875rem;
+  --kk-font-size-base: 1rem;
+  --kk-font-size-lg: 1.125rem;
+  --kk-font-size-xl: 1.25rem;
+  --kk-font-size-2xl: 1.5rem;
+  --kk-font-size-3xl: 1.875rem;
+  --kk-font-size-4xl: 2.25rem;
+  
+  /* Motion */
+  --kk-transition-fast: 150ms ease-out;
+  --kk-transition-base: 200ms ease-out;
+  --kk-transition-slow: 300ms ease-out;
+}
+
+/* === DARK THEME TOKENS === */
+.dark {
+  --kk-primary: #3B82F6;
+  --kk-primary-foreground: #0B1426;
+  --kk-primary-alt: #60A5FA;
+  --kk-primary-muted: #1E3A8A;
+  
+  --kk-surface: #0B1426;
+  --kk-surface-2: #111827;
+  --kk-surface-3: #1F2937;
+  --kk-surface-4: #374151;
+  
+  --kk-text: #F8FAFC;
+  --kk-text-muted: #94A3B8;
+  --kk-text-subtle: #64748B;
+  
+  --kk-accent: #B89F5D;
+  --kk-accent-muted: #92400E;
+  
+  --kk-success: #22C55E;
+  --kk-warning: #F59E0B;
+  --kk-danger: #EF4444;
+  
+  --kk-border: #1F2937;
+  --kk-border-strong: #374151;
+  --kk-ring: #3B82F6;
+}
+
+================================================================================
+2) TAILWIND: tailwind.config.js extend snippet
+================================================================================
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: 'var(--kk-primary)',
+          foreground: 'var(--kk-primary-foreground)',
+          alt: 'var(--kk-primary-alt)',
+          muted: 'var(--kk-primary-muted)',
+        },
+        surface: {
+          DEFAULT: 'var(--kk-surface)',
+          2: 'var(--kk-surface-2)',
+          3: 'var(--kk-surface-3)',
+          4: 'var(--kk-surface-4)',
+        },
+        text: {
+          DEFAULT: 'var(--kk-text)',
+          muted: 'var(--kk-text-muted)',
+          subtle: 'var(--kk-text-subtle)',
+        },
+        accent: {
+          DEFAULT: 'var(--kk-accent)',
+          muted: 'var(--kk-accent-muted)',
+        },
+        success: 'var(--kk-success)',
+        warning: 'var(--kk-warning)',
+        danger: 'var(--kk-danger)',
+        border: {
+          DEFAULT: 'var(--kk-border)',
+          strong: 'var(--kk-border-strong)',
+        },
+        ring: 'var(--kk-ring)',
+      },
+      fontFamily: {
+        sans: ['var(--kk-font-family)'],
+      },
+      fontSize: {
+        xs: ['var(--kk-font-size-xs)', { lineHeight: '1.4' }],
+        sm: ['var(--kk-font-size-sm)', { lineHeight: '1.5' }],
+        base: ['var(--kk-font-size-base)', { lineHeight: '1.6' }],
+        lg: ['var(--kk-font-size-lg)', { lineHeight: '1.6' }],
+        xl: ['var(--kk-font-size-xl)', { lineHeight: '1.5' }],
+        '2xl': ['var(--kk-font-size-2xl)', { lineHeight: '1.4' }],
+        '3xl': ['var(--kk-font-size-3xl)', { lineHeight: '1.3' }],
+        '4xl': ['var(--kk-font-size-4xl)', { lineHeight: '1.2' }],
+      },
+      spacing: {
+        xs: 'var(--kk-space-xs)',
+        sm: 'var(--kk-space-sm)',
+        md: 'var(--kk-space-md)',
+        lg: 'var(--kk-space-lg)',
+        xl: 'var(--kk-space-xl)',
+        '2xl': 'var(--kk-space-2xl)',
+      },
+      borderRadius: {
+        sm: 'var(--kk-radius-sm)',
+        DEFAULT: 'var(--kk-radius)',
+        lg: 'var(--kk-radius-lg)',
+        xl: 'var(--kk-radius-xl)',
+        '2xl': 'var(--kk-radius-2xl)',
+      },
+      boxShadow: {
+        sm: 'var(--kk-shadow-sm)',
+        DEFAULT: 'var(--kk-shadow)',
+        lg: 'var(--kk-shadow-lg)',
+        card: 'var(--kk-shadow-card)',
+      },
+      transitionDuration: {
+        fast: '150ms',
+        base: '200ms',
+        slow: '300ms',
+      },
+    },
+  },
+}
+
+================================================================================
+3) BASE CSS: layer(base) resets + layer(components) recipes
+================================================================================
+
+/* === BASE LAYER === */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--kk-font-family);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--kk-surface);
+    color: var(--kk-text);
+    font-size: var(--kk-font-size-base);
+  }
+  
+  /* Focus management for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--kk-ring);
+    outline-offset: 2px;
+    border-radius: var(--kk-radius-sm);
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    *:focus-visible {
+      outline: 3px solid var(--kk-ring);
+      outline-offset: 1px;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* === COMPONENTS LAYER === */
+@layer components {
+  /* === BUTTON RECIPES === */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary shadow-sm;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-surface-2 text-text border border-border hover:bg-surface-3 focus:ring-primary;
+  }
+  
+  .btn-ghost {
+    @apply btn bg-transparent text-text hover:bg-surface-2 focus:ring-primary;
+  }
+  
+  .btn-accent {
+    @apply btn bg-accent text-white hover:bg-accent/90 focus:ring-accent;
+  }
+  
+  /* === INPUT RECIPES === */
+  .input {
+    @apply w-full px-3 py-2 bg-surface-2 border border-border rounded-lg text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors;
+  }
+  
+  .input-error {
+    @apply input border-danger focus:ring-danger;
+  }
+  
+  /* === CARD RECIPES === */
+  .card {
+    @apply bg-surface-2 border border-border rounded-xl p-6 shadow-card transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .card-elevated {
+    @apply card shadow-lg border-0 bg-white dark:bg-surface-3;
+  }
+  
+  /* === SECTION RECIPES === */
+  .section {
+    @apply py-16 px-4;
+  }
+  
+  .section-tight {
+    @apply py-8 px-4;
+  }
+  
+  .section-wide {
+    @apply py-20 px-4;
+  }
+  
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  /* === ANNOUNCEMENT BAR === */
+  .announcement-bar {
+    @apply bg-primary text-primary-foreground py-2 px-4 text-center text-sm font-medium;
+  }
+  
+  /* === TRUST STRIP === */
+  .trust-strip {
+    @apply bg-surface-2 border-t border-border py-6;
+  }
+  
+  .trust-list {
+    @apply flex flex-wrap justify-center items-center gap-8 text-center text-sm text-text-muted;
+  }
+  
+  /* === HERO ZONES === */
+  .hero-section {
+    @apply relative overflow-hidden min-h-screen flex items-center;
+  }
+  
+  .hero-bg {
+    @apply absolute inset-0 z-0 bg-cover bg-center bg-no-repeat;
+  }
+  
+  .hero-overlay {
+    @apply absolute inset-0 z-0 bg-white/80 dark:bg-surface/80;
+  }
+  
+  .hero-content {
+    @apply relative z-10 max-w-4xl mx-auto text-center px-4;
+  }
+  
+  /* === UTILITY CLASSES === */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-primary-alt to-primary-muted bg-clip-text text-transparent;
+  }
+  
+  .radial-glow {
+    @apply relative;
+  }
+  
+  .radial-glow::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-radial from-primary/20 to-transparent opacity-60 blur-3xl pointer-events-none z-[-1];
+  }
+  
+  .ribbon {
+    @apply inline-block px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-primary-alt font-semibold text-sm;
+  }
+}
+
+================================================================================
+4) COMPONENT RECIPES: Button, Input, Card, Section, AnnouncementBar, TrustStrip, Hero
+================================================================================
+
+/* === BUTTON COMPONENT === */
+.btn-component {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary-component {
+  @apply btn-component bg-primary text-primary-foreground;
+  @apply hover:bg-primary/90 focus:ring-primary;
+  @apply shadow-sm hover:shadow-md;
+}
+
+.btn-secondary-component {
+  @apply btn-component bg-surface-2 text-text border border-border;
+  @apply hover:bg-surface-3 focus:ring-primary;
+}
+
+.btn-ghost-component {
+  @apply btn-component bg-transparent text-text;
+  @apply hover:bg-surface-2 focus:ring-primary;
+}
+
+/* === INPUT COMPONENT === */
+.input-component {
+  @apply w-full px-3 py-2 bg-surface-2 border border-border rounded-lg;
+  @apply text-text placeholder:text-text-muted;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary;
+  @apply transition-colors duration-200;
+}
+
+/* === CARD COMPONENT === */
+.card-component {
+  @apply bg-surface-2 border border-border rounded-xl p-6;
+  @apply shadow-card transition-all duration-200;
+  @apply hover:shadow-lg hover:-translate-y-1;
+}
+
+/* === SECTION COMPONENT === */
+.section-component {
+  @apply py-16 px-4;
+}
+
+.section-tight-component {
+  @apply py-8 px-4;
+}
+
+.section-wide-component {
+  @apply py-20 px-4;
+}
+
+/* === ANNOUNCEMENT BAR COMPONENT === */
+.announcement-bar-component {
+  @apply bg-primary text-primary-foreground py-2 px-4;
+  @apply text-center text-sm font-medium;
+}
+
+/* === TRUST STRIP COMPONENT === */
+.trust-strip-component {
+  @apply bg-surface-2 border-t border-border py-6;
+}
+
+.trust-list-component {
+  @apply flex flex-wrap justify-center items-center gap-8;
+  @apply text-center text-sm text-text-muted;
+}
+
+/* === HERO COMPONENT === */
+.hero-section-component {
+  @apply relative overflow-hidden min-h-screen flex items-center;
+}
+
+.hero-bg-component {
+  @apply absolute inset-0 z-0 bg-cover bg-center bg-no-repeat;
+}
+
+.hero-overlay-component {
+  @apply absolute inset-0 z-0 bg-white/80 dark:bg-surface/80;
+}
+
+.hero-content-component {
+  @apply relative z-10 max-w-4xl mx-auto text-center px-4;
+}
+
+================================================================================
+5) A11Y & MOTION: Focus, States, Reduced Motion Rules
+================================================================================
+
+/* === ACCESSIBILITY GUIDELINES === */
+
+/* Focus Management */
+.focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-surface;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply border-2 border-primary;
+  }
+  
+  .card {
+    @apply border-2 border-border;
+  }
+}
+
+/* Screen Reader Only */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+/* Skip Link */
+.skip-link {
+  @apply absolute -top-10 left-6 bg-primary text-primary-foreground px-4 py-2 rounded-lg;
+  @apply focus:top-6 transition-top duration-200;
+}
+
+/* === MOTION SYSTEM === */
+
+/* Base Transitions */
+.transition-fast {
+  @apply transition-all duration-150 ease-out;
+}
+
+.transition-base {
+  @apply transition-all duration-200 ease-out;
+}
+
+.transition-slow {
+  @apply transition-all duration-300 ease-out;
+}
+
+/* Hover States */
+.hover-lift {
+  @apply transition-transform duration-200 hover:-translate-y-1;
+}
+
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift,
+  .hover-scale,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-hero {
+    @apply transform-none;
+  }
+  
+  .radial-glow::before {
+    @apply hidden;
+  }
+}
+
+/* === STATE TOKENS === */
+.state-hover {
+  @apply hover:bg-surface-2 transition-colors duration-200;
+}
+
+.state-focus {
+  @apply focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+.state-active {
+  @apply active:scale-95 transition-transform duration-100;
+}
+
+.state-disabled {
+  @apply opacity-50 cursor-not-allowed pointer-events-none;
+}
+
+================================================================================
+6) NOTES: shadcn/ui + Radix Usage Guidance
+================================================================================
+
+/* === SHADCN/UI + RADIX ALIGNMENT === */
+
+/* Component Structure */
+.component-wrapper {
+  @apply relative;
+}
+
+.component-trigger {
+  @apply inline-flex items-center justify-center;
+}
+
+.component-content {
+  @apply absolute z-50 min-w-[8rem] overflow-hidden rounded-md border bg-surface-2 p-1 shadow-md;
+}
+
+/* Radix Slot Pattern */
+.component-slot {
+  @apply [&>*]:first:mt-0 [&>*]:last:mb-0;
+}
+
+/* Radix State Classes */
+[data-state="open"] {
+  @apply animate-in fade-in-0 zoom-in-95;
+}
+
+[data-state="closed"] {
+  @apply animate-out fade-out-0 zoom-out-95;
+}
+
+[data-state="checked"] {
+  @apply bg-primary text-primary-foreground;
+}
+
+[data-state="unchecked"] {
+  @apply bg-surface-2 border border-border;
+}
+
+/* === IMPLEMENTATION PATTERNS === */
+
+/* Button with Icon */
+.btn-with-icon {
+  @apply inline-flex items-center gap-2;
+}
+
+/* Form Field */
+.form-field {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply text-sm font-medium text-text;
+}
+
+.form-description {
+  @apply text-sm text-text-muted;
+}
+
+.form-error {
+  @apply text-sm text-danger;
+}
+
+/* === RESPONSIVE PATTERNS === */
+
+/* Mobile First */
+.mobile-first {
+  @apply text-sm md:text-base lg:text-lg;
+}
+
+/* Container Queries Ready */
+.container-responsive {
+  @apply container-type-inline-size;
+}
+
+/* === PERFORMANCE NOTES === */
+
+/* Critical CSS */
+.critical {
+  @apply contents;
+}
+
+/* Lazy Loading */
+.lazy-load {
+  @apply loading-lazy;
+}
+
+/* === DARK MODE IMPLEMENTATION === */
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors;
+  @apply bg-surface-3 dark:bg-primary;
+}
+
+.dark-mode-thumb {
+  @apply pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white transition-transform;
+  @apply translate-x-1 dark:translate-x-6;
+}
+
+/* === COMPONENT VARIANT SYSTEM === */
+
+/* Size Variants */
+.btn-sm { @apply px-3 py-1.5 text-sm; }
+.btn-md { @apply px-4 py-2 text-base; }
+.btn-lg { @apply px-6 py-3 text-lg; }
+
+/* Color Variants */
+.btn-success { @apply bg-success text-white hover:bg-success/90; }
+.btn-warning { @apply bg-warning text-white hover:bg-warning/90; }
+.btn-danger { @apply bg-danger text-white hover:bg-danger/90; }
+
+/* === USAGE EXAMPLES === */
+
+/* Hero Section */
+.hero-example {
+  @apply hero-section-component;
+}
+
+.hero-example .bg {
+  @apply hero-bg-component;
+  background-image: url('/assets/hero_gradient.jpg');
+}
+
+.hero-example .overlay {
+  @apply hero-overlay-component;
+}
+
+.hero-example .content {
+  @apply hero-content-component;
+}
+
+/* Card Grid */
+.card-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.card-grid .card {
+  @apply card-component;
+}
+
+/* Form Layout */
+.form-layout {
+  @apply space-y-6 max-w-md mx-auto;
+}
+
+.form-layout .input {
+  @apply input-component;
+}
+
+.form-layout .btn {
+  @apply btn-primary-component w-full;
+}
+
+================================================================================
+IMPLEMENTATION CHECKLIST
+================================================================================
+
+✅ Design tokens (light + initial dark draft) as CSS variables
+✅ Tailwind config snippet using tokens  
+✅ Base element styles (buttons, inputs, cards, sections, announcement bar, trust strip)
+✅ shadcn/ui + Radix alignment notes
+✅ Accessibility + motion guidelines
+✅ Component class recipes
+
+================================================================================
+NEXT STEPS FOR DARK THEME PASS
+================================================================================
+
+1. Review contrast ratios for all color combinations
+2. Test dark mode overlay opacity for hero backgrounds
+3. Validate focus states in dark mode
+4. Ensure semantic colors maintain accessibility
+5. Test reduced motion preferences
+6. Validate component state indicators
+7. Performance audit for motion and transitions
+
+================================================================================
+END OF THEME BASELINE DUMP v1
+================================================================================

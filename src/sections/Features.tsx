@@ -1,86 +1,139 @@
 import * as React from 'react';
-import { Card } from '@/ui/Card';
-import { Button } from '@/ui/Button';
+import { Zap, Target, Rocket, Shield, TrendingUp, Users, Globe, Code, ArrowRight } from 'lucide-react';
+import { StaggeredContainer, GradientBorderCard } from '@/ui';
 
-const packages = [
+const features = [
   {
-    id: 'starter',
-    title: 'Starter',
-    outcome: 'Your polished launch site, live in 3 weeks.',
-    includes: [
-      'Brand starter kit (logo, palette, type)',
-      '5‑page website (Home, About, Services, Case, Contact)',
-      'Basic SEO + analytics setup'
-    ],
-    timeline: '3 weeks',
-    price: '₹25,000',
-    cta: 'Choose Starter',
-    dataGt: 'cta_choose_starter'
+    icon: Zap,
+    title: "Lightning Fast",
+    description: "30-day sprints guaranteed. From concept to launch in record time.",
+    color: "accent-primary",
+    delay: "0s"
   },
   {
-    id: 'sprint',
-    title: 'Sprint',
-    outcome: 'Launch in 30 days with growth tools.',
-    includes: [
-      'Everything in Starter',
-      'Shopify store setup',
-      'Content kit (15 reels + 5 carousels)',
-      'Basic CRO optimization'
-    ],
-    timeline: '30 days',
-    price: '₹65,000',
-    cta: 'Choose Sprint',
-    dataGt: 'cta_choose_sprint'
+    icon: Target,
+    title: "Precision Focused",
+    description: "AI-powered insights ensure every element drives growth and conversion.",
+    color: "accent-secondary",
+    delay: "0.1s"
   },
   {
-    id: 'scale',
-    title: 'Scale',
-    outcome: 'Grow & optimize with data-driven insights.',
-    includes: [
-      'Everything in Sprint',
-      'SEO optimization',
-      'Analytics dashboard setup',
-      'Performance monitoring'
-    ],
-    timeline: '45 days',
-    price: '₹95,000',
-    cta: 'Choose Scale',
-    dataGt: 'cta_choose_scale'
+    icon: Rocket,
+    title: "Launch Ready",
+    description: "Complete brand, web, and growth stack ready for immediate deployment.",
+    color: "accent-tertiary",
+    delay: "0.2s"
+  },
+  {
+    icon: Shield,
+    title: "Founder Friendly",
+    description: "Transparent pricing, clear deliverables, and ongoing support.",
+    color: "accent-primary",
+    delay: "0.3s"
+  },
+  {
+    icon: TrendingUp,
+    title: "Growth Optimized",
+    description: "Built-in CRO, analytics, and growth frameworks from day one.",
+    color: "accent-secondary",
+    delay: "0.4s"
+  },
+  {
+    icon: Users,
+    title: "Community Driven",
+    description: "Access to our network of founders, investors, and growth experts.",
+    color: "accent-tertiary",
+    delay: "0.5s"
+  },
+  {
+    icon: Globe,
+    title: "Global Standards",
+    description: "World-class design and development practices for Indian startups.",
+    color: "accent-primary",
+    delay: "0.6s"
+  },
+  {
+    icon: Code,
+    title: "Future Proof",
+    description: "Built with the latest technologies and scalable architecture.",
+    color: "accent-secondary",
+    delay: "0.7s"
   }
 ];
 
-export default function Features(){
+export default function Features() {
   return (
-    <section id="packages" aria-labelledby="pack-h" className="py-14">
-      <div className="container mx-auto px-4">
-        <h2 id="pack-h" className="text-2xl sm:text-3xl font-bold mb-6 text-center">Packages & pricing</h2>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-          {packages.map((pkg) => (
-            <Card key={pkg.id} className="p-6 relative" data-tier={pkg.id}>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{pkg.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">{pkg.outcome}</p>
-              <ul className="includes space-y-2 mb-6">
-                {pkg.includes.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-200">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="timeline text-sm text-gray-500 dark:text-gray-400 mb-2">Timeline: {pkg.timeline}</p>
-              <p className="price text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                {pkg.price} <span className="tax text-sm font-normal text-gray-500">+ 18% GST</span>
-              </p>
-              <Button asChild className="w-full">
-                <a href="#lead" data-gt={pkg.dataGt}>{pkg.cta}</a>
-              </Button>
-              <details className="scope mt-4 text-sm">
-                <summary className="cursor-pointer text-primary hover:text-primary/80">See full scope</summary>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">Download detailed scope PDF for complete specifications.</p>
-              </details>
-            </Card>
-          ))}
-        </div>
+    <section className="py-20 bg-bg-secondary relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <StaggeredContainer staggerDelay={0.2} initialDelay={0.3}>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary border border-accent-primary rounded-full mb-6">
+              <Zap className="w-4 h-4 text-accent-primary" />
+              <span className="text-accent-primary text-sm font-medium">Why Choose Wittwizz</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-black text-text-primary mb-6">
+              <span className="text-text-primary">Built for</span>
+              <br />
+              <span className="text-accent-primary">Tomorrow's</span>
+              <br />
+              <span className="text-text-primary">Founders</span>
+            </h2>
+            
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+              Every feature, every pixel, every line of code is designed to give Indian startups 
+              the competitive edge they need in today's fast-paced digital landscape.
+            </p>
+          </div>
+        </StaggeredContainer>
+
+        {/* Features Grid */}
+        <StaggeredContainer staggerDelay={0.1} initialDelay={0.5}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => {
+              const IconComponent = feature.icon;
+              const colorClasses = {
+                'accent-primary': 'border-accent-primary text-accent-primary',
+                'accent-secondary': 'border-accent-secondary text-accent-secondary',
+                'accent-tertiary': 'border-accent-tertiary text-accent-tertiary'
+              };
+              
+              return (
+                <GradientBorderCard
+                  key={index}
+                  className="group cursor-pointer"
+                  borderGradient={`from-${feature.color} to-${feature.color}`}
+                >
+                  {/* Icon Container */}
+                  <div className={`w-16 h-16 bg-bg-secondary border-2 ${colorClasses[feature.color as keyof typeof colorClasses]} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className="w-8 h-8" />
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-text-primary mb-3 group-hover:text-accent-primary transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </GradientBorderCard>
+              );
+            })}
+          </div>
+        </StaggeredContainer>
+
+        {/* Bottom CTA */}
+        <StaggeredContainer staggerDelay={0.1} initialDelay={1}>
+          <div className="text-center mt-16">
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent-primary to-accent-secondary text-bg-primary font-semibold rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <Rocket className="w-5 h-5" />
+              Explore Our Process
+              <ArrowRight className="w-5 h-5" />
+            </div>
+          </div>
+        </StaggeredContainer>
       </div>
     </section>
   );

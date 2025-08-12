@@ -1,43 +1,278 @@
+/* === FUTURISTIC TYPOGRAPHY === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 :root {
-  --brand-primary: #2563EB;
-  --radius-2xl: 1rem;
-  --surface: #0B1426;
-  --ink: #1A1A1A;
-  --primary: #2563EB;
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* === FUTURISTIC GEOMETRIC DARK THEME === */
+  
+  /* Core Colors - Futuristic Dark Palette */
+  --bg-primary: #0A0A0F;           /* Deep space black */
+  --bg-secondary: #111118;         /* Dark slate */
+  --bg-tertiary: #1A1A2E;         /* Midnight blue */
+  --bg-accent: #16213E;           /* Deep ocean */
+  
+  /* Accent Colors - Futuristic Neon */
+  --accent-primary: #00D4FF;      /* Electric blue */
+  --accent-secondary: #7C3AED;    /* Electric purple */
+  --accent-tertiary: #10B981;     /* Neon green */
+  --accent-warning: #F59E0B;      /* Amber glow */
+  
+  /* Text Colors - High Contrast */
+  --text-primary: #FFFFFF;        /* Pure white */
+  --text-secondary: #E2E8F0;      /* Light gray */
+  --text-muted: #94A3B8;          /* Muted gray */
+  --text-accent: #00D4FF;         /* Electric blue text */
+  
+  /* Border & Divider Colors */
+  --border-primary: #1E293B;      /* Dark borders */
+  --border-accent: #00D4FF;       /* Glowing borders */
+  --border-glow: rgba(0, 212, 255, 0.3); /* Subtle glow */
+  
+  /* Shadow & Glow Effects */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 212, 255, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 212, 255, 0.1), 0 2px 4px -1px rgba(0, 212, 255, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 212, 255, 0.1), 0 4px 6px -2px rgba(0, 212, 255, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 212, 255, 0.1), 0 10px 10px -5px rgba(0, 212, 255, 0.04);
+  
+  /* Geometric Shapes & Patterns */
+  --radius-sm: 0.25rem;           /* Sharp corners */
+  --radius-md: 0.5rem;            /* Medium sharp */
+  --radius-lg: 1rem;              /* Large sharp */
+  --radius-xl: 1.5rem;            /* Extra large */
+  
+  /* Animation & Transition Variables */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-mesmerizing: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  
+  /* Background Patterns */
+  --bg-geometric: radial-gradient(circle at 25% 25%, var(--accent-primary) 0%, transparent 50%), radial-gradient(circle at 75% 75%, var(--accent-secondary) 0%, transparent 50%);
+  --bg-geometric-size: 200px 200px;
 }
 
-/* Keep using system UI font via CSS */
+/* === FUTURISTIC TYPOGRAPHY === */
 body {
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.025em;
 }
 
-/* === Wittwizz visual spice tokens & utilities === */
-:root{
-  --brand-primary:#2563EB;
-  --brand-primary-alt:#4F9FFF; /* AA-safe on dark */
-  --surface:#0B1426;
-  --ink:#1A1A1A;
-  --ring: var(--brand-primary);
-  --primary: #2563EB;
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+/* === FUTURISTIC UTILITY CLASSES === */
+
+/* Gradient Text Effects */
+.gradient-text-primary {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease-in-out infinite;
 }
-/* Gradient text */
-.gradient-text{background:linear-gradient(90deg,#2563EB 0%,#60A5FA 50%,#93C5FD 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-/* Soft radial glow */
-.radial-glow{position:relative}
-.radial-glow::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:60%;background:radial-gradient(50% 50% at 50% 50%, rgba(37,99,235,.18) 0%, transparent 70%);filter:blur(40px);pointer-events:none;z-index:-1}
-/* Ribbons (speed persona) */
-.ribbon{position:relative;display:inline-block;padding:.5rem 1rem;border-radius:9999px;background:#FFF1;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12)}
-.ribbon::after{content:"";position:absolute;right:-12px;top:50%;width:12px;height:2px;background:var(--brand-primary);transform:translateY(-50%)}
-/* Hover-lift cards */
-.card{transition:transform .2s, box-shadow .2s}
-.card:hover{transform:translateY(-2px)}
-/* Countdown micro-interaction (gentle, no JS) */
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(.98)}}
-.countdown{animation:pulse 1.8s ease-in-out infinite}
-/* Marquee (optional) */
-@keyframes marquee{to{transform:translateX(-50%)}}
-.marquee{overflow:hidden;white-space:nowrap}
-.marquee-track{display:inline-block;animation:marquee 18s linear infinite;will-change:transform}
-@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+.gradient-text-secondary {
+  background: linear-gradient(135deg, var(--accent-tertiary) 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Geometric Glow Effects */
+.geometric-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.geometric-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.geometric-glow:hover::before {
+  opacity: 1;
+}
+
+/* Futuristic Border Effects */
+.border-futuristic {
+  border: 1px solid var(--border-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.border-futuristic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.border-futuristic:hover::after {
+  opacity: 0.3;
+}
+
+/* Mesmerizing Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100px) skewX(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) skewX(0deg);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px) skewX(15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) skewX(0deg);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Staggered Animation Delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Geometric Background Patterns */
+.bg-geometric {
+  background-image: 
+    radial-gradient(circle at 25% 25%, var(--accent-primary) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, var(--accent-secondary) 0%, transparent 50%);
+  background-size: 200px 200px;
+  opacity: 0.03;
+}
+
+/* Futuristic Card Styles */
+.card-futuristic {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-futuristic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+  transition: left var(--transition-slow);
+}
+
+.card-futuristic:hover::before {
+  left: 100%;
+}
+
+.card-futuristic:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Responsive Design Tokens */
+@media (max-width: 768px) {
+  :root {
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0.1s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+    --transition-mesmerizing: 0.4s ease;
+  }
+  
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-fade-in-up {
+    animation: none;
+  }
+}
