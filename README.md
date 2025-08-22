@@ -1,208 +1,113 @@
-# Wittwizz Digital - Landing Page v1
+# 🚀 Wittwizz Digital Landing Page
 
-## 🚀 Live Site
-**Production URL**: https://wittwizz.github.io/Wittwizz/
+A **minimalist futuristic geometric** landing page built with modern web technologies, featuring seamless animations and a dark theme designed for Indian startups.
 
-## 📋 Project Overview
-Wittwizz Digital is an AI-powered brand, web, and growth partner for India's startups. This landing page showcases our services, packages, and sector expertise with a focus on founder-friendly, efficient delivery.
+## ✨ Features
+
+- **🎨 AceternityUI-Level Animations** - Smooth typewriter effects, staggered reveals, gradient borders
+- **🌙 Dark Futuristic Theme** - Geometric shapes, floating particles, neon accents
+- **📱 Responsive Design** - Optimized for all devices with smooth transitions
+- **⚡ Performance Optimized** - Fast loading with optimized animations
+- **🔧 Modern Tech Stack** - React 19, TypeScript, Vite, Tailwind CSS
 
 ## 🏗️ Project Structure
+
 ```
 wittwizz/
-├── index.html          # Main landing page (675 lines)
-├── styles.css          # Responsive styling (937 lines)
-├── assets/             # Images and visual assets
-├── content/            # Content matrix and specifications
-├── docs/               # Documentation and guides
-├── releases/           # Release notes and version history
-├── scripts/            # Utility scripts and tools
-└── reports/            # Performance and analytics reports
+├── src/
+│   ├── sections/          # Main page sections
+│   │   ├── Hero.tsx      # Animated hero with typewriter
+│   │   ├── Features.tsx  # Feature showcase grid
+│   │   ├── Services.tsx  # Service offerings
+│   │   └── Packages.tsx  # Pricing packages
+│   ├── ui/               # Core UI components
+│   │   ├── AnimatedBackground.tsx    # Floating particles & shapes
+│   │   ├── GradientBorderCard.tsx    # Interactive cards
+│   │   ├── TypewriterEffect.tsx      # Smooth text cycling
+│   │   └── StaggeredContainer.tsx    # Reveal animations
+│   ├── styles/           # CSS & design tokens
+│   └── lib/              # Utilities & helpers
+├── assets/               # Images & static assets
+├── docs/                 # Documentation
+│   └── development/      # Development notes & task summaries
+└── .github/workflows/    # CI/CD deployment
 ```
 
-## 🎯 Features Implemented
-
-### Core Sections
-1. **Hero Section** - Main headline and call-to-actions
-2. **Stats Bar** - Performance metrics and guarantees
-3. **Services** - 4 core service offerings with pricing
-4. **Packages** - 3 pricing tiers (Startup Launch, Growth Sprint, Scale Ready)
-5. **Differentiators** - Key value propositions
-6. **Sectors** - Industry-specific solutions (D2C, SaaS, Fintech, Healthtech)
-7. **Case Studies** - Success stories and results
-8. **FAQs** - Common questions and answers
-9. **Lead Form** - 9-field contact form for lead generation
-10. **Footer** - Company information and legal links
-
-### Technical Features
-- **Responsive Design** - Mobile-first approach
-- **Accessibility** - ARIA labels, keyboard navigation
-- **Performance** - Optimized CSS, minimal JavaScript
-- **SEO** - Meta tags, structured data, semantic HTML
-- **Analytics** - Event tracking for user interactions
-- **Deep Linking** - Shareable calculator configurations with URL state
-
-### Deep Linking System
-The calculator supports deep linking to share specific configurations:
-
-#### New Schema (Recommended)
-- **Quick Mode**: `?mode=quick&pick=starter`
-- **Advanced Mode**: `?mode=advanced&pick=brand_kit,web_site,social_media`
-
-#### Legacy Schema (Backward Compatible)
-- **Preset Only**: `?pick=starter` (automatically sets Quick mode)
-
-#### Features
-- URLs automatically sync with calculator state
-- Browser back/forward navigation preserves state
-- Copy link button generates shareable URLs
-- Automatic mode detection based on selections
-
-## 🚀 Deployment
-
-### Current Deployment
-- **Host**: GitHub Pages
-- **Branch**: `lp-v1`
-- **URL**: https://wittwizz.github.io/Wittwizz/
-- **Status**: ✅ Live and accessible
-
-### How to Redeploy
-
-#### For Updates to Existing Site
-1. **Make Changes**: Edit HTML, CSS, or assets
-2. **Commit Changes**: 
-   ```bash
-   git add .
-   git commit -m "description of changes"
-   ```
-3. **Push to Branch**: 
-   ```bash
-   git push origin lp-v1
-   ```
-4. **Auto-Deploy**: GitHub Pages automatically deploys from `lp-v1` branch
-
-#### For New Releases
-1. **Create New Branch**: 
-   ```bash
-   git checkout -b lp-v2
-   ```
-2. **Make Changes**: Implement new features/fixes
-3. **Test Locally**: Verify functionality
-4. **Push Branch**: 
-   ```bash
-   git push origin lp-v2
-   ```
-5. **Update Pages Source**: Change GitHub Pages source to new branch in repository settings
-6. **Update Release Notes**: Create new release document in `/releases/`
-
-#### Rollback Procedure
-1. **Identify Bad Commit**: Find problematic commit hash
-2. **Revert Branch**: 
-   ```bash
-   git revert <commit-hash>
-   ```
-3. **Push Changes**: 
-   ```bash
-   git push origin lp-v1
-   ```
-4. **Verify Rollback**: Check deployed site functionality
-
-## 🛠️ Local Development
+## 🚀 Quick Start
 
 ### Prerequisites
-- Git
-- Web browser
-- Text editor
+- Node.js 18+ 
+- npm or yarn
 
-### Setup
-1. **Clone Repository**: 
-   ```bash
-   git clone https://github.com/Wittwizz/Wittwizz.git
-   cd Wittwizz
-   ```
-2. **Switch to Branch**: 
-   ```bash
-   git checkout lp-v1
-   ```
-3. **Open in Browser**: Open `index.html` in your web browser
+### Installation
+```bash
+git clone https://github.com/Wittwizz/Wittwizz.git
+cd Wittwizz
+npm install
+```
 
-### Development Workflow
-1. **Make Changes**: Edit files as needed
-2. **Test Locally**: Open in browser to verify changes
-3. **Commit Changes**: Follow deployment steps above
-4. **Push Updates**: Deploy to GitHub Pages
+### Development
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
 
-## 📊 Quality Assurance
+## 🎨 Design System
 
-### Performance Targets
-- **Lighthouse Performance**: 90+/100
-- **Lighthouse Accessibility**: 95+/100
-- **Cumulative Layout Shift**: < 0.1
-- **Largest Contentful Paint**: < 2.5s
+### Color Palette
+- **Primary**: Deep dark backgrounds (`#0A0A0A`, `#111111`)
+- **Accents**: Neon colors (`#00D4FF`, `#FF6B6B`, `#4ECDC4`)
+- **Text**: High contrast whites and grays
+- **Borders**: Glowing neon effects
 
-### Browser Support
-- ✅ Chrome/Chromium (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS/Android)
+### Typography
+- **Headings**: Inter (Bold, Black weights)
+- **Body**: Inter (Regular, Medium)
+- **Code**: JetBrains Mono
 
-## 🔧 Configuration
+### Animations
+- **Duration**: 300ms - 1500ms
+- **Easing**: Smooth cubic-bezier curves
+- **Stagger**: 100ms - 200ms delays
+- **Reduced Motion**: Respects user preferences
 
-### GitHub Pages Settings
-- **Source**: Deploy from a branch
+## 🌐 Deployment
+
+- **Live Site**: https://wittwizz.github.io/Wittwizz/
 - **Branch**: `lp-v1`
-- **Folder**: `/ (root)`
-- **Custom Domain**: None (using default)
+- **Auto-Deploy**: GitHub Actions on push
+- **Build Tool**: Vite
 
-### Environment Variables
-No environment variables required for static deployment.
+## 📱 Current Sections
 
-## 📝 Content Management
+1. **Hero** - Animated background + Typewriter effect
+2. **Features** - 8 feature cards with gradient borders
+3. **Services** - 3 service offerings + process steps
+4. **Packages** - 3 pricing tiers with popular highlighting
+5. **Final CTA** - Seamless conclusion with trust indicators
 
-### Updating Content
-1. **Edit HTML**: Modify content directly in `index.html`
-2. **Update Assets**: Replace images in `assets/` directory
-3. **Modify Styling**: Update `styles.css` for design changes
-4. **Deploy Changes**: Follow redeployment steps above
+## 🔮 Future Enhancements
 
-### Content Sources
-- **Services**: Defined in `content/website/content-matrix.json`
-- **Pricing**: Hardcoded in HTML (update manually)
-- **Images**: Placeholder images in `assets/` (replace with actual)
+- Interactive pricing calculator
+- Case studies portfolio
+- Contact forms
+- Blog/resources section
+- Enhanced mobile experience
 
-## 🚨 Known Issues
+## 🛠️ Tech Stack
 
-### Current Limitations
-1. **Placeholder Images**: All images are basic text placeholders
-   - **Impact**: Visual appearance not production-ready
-   - **Priority**: Medium - Replace before public launch
-
-2. **Form Backend**: Contact form submits to console only
-   - **Impact**: No actual lead capture
-   - **Priority**: High - Implement backend before launch
-
-3. **Analytics**: Events logged to console only
-   - **Impact**: No actual analytics data collection
-   - **Priority**: Medium - Wire to analytics provider
-
-## 📞 Support
-
-### Technical Issues
-- **Repository**: https://github.com/Wittwizz/Wittwizz
-- **Issues**: Create GitHub issue for bugs or feature requests
-- **Discussions**: Use GitHub Discussions for questions
-
-### Business Inquiries
-- **Email**: hello@wittwizz.com
-- **Website**: https://wittwizz.github.io/Wittwizz/
+- **Frontend**: React 19 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + Custom CSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Deployment**: GitHub Pages + Actions
 
 ## 📄 License
 
-This project is proprietary to Wittwizz Digital. All rights reserved.
+This project is proprietary to Wittwizz Digital.
 
 ---
 
-**Last Updated**: 2025-08-11  
-**Version**: v1.0.0  
-**Release Engineer**: Himanshu  
-**Status**: ✅ Deployed and Live
+**Built with ❤️ for Indian Startups** 🚀🇮🇳
