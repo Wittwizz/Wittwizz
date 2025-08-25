@@ -4,7 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Wittwiz',
+  base: '/Wittwizz/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
