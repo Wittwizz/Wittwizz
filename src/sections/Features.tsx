@@ -63,14 +63,14 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-20 bg-bg-secondary relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden min-h-screen flex items-center">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <StaggeredContainer staggerDelay={0.2} initialDelay={0.3}>
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary border border-accent-primary rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary/80 backdrop-blur-md border border-accent-primary rounded-full mb-6">
               <Zap className="w-4 h-4 text-accent-primary" />
-              <span className="text-accent-primary text-sm font-medium">Why Choose Wittwizz</span>
+              <span className="text-accent-primary text-sm font-medium">Why Choose Wittwiz</span>
             </div>
             
             <h2 className="text-4xl md:text-6xl font-black text-text-primary mb-6">

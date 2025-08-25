@@ -12,20 +12,24 @@ module.exports = {
         secondary: "#7C3AED",      // Electric purple
         tertiary: "#10B981",       // Neon green
         warning: "#F59E0B",        // Amber glow
+        pink: "#EC4899",           // Neon pink
+        orange: "#F97316",         // Neon orange
+        cyan: "#06B6D4",           // Neon cyan
+        yellow: "#EAB308",         // Neon yellow
         
-        // Background Colors
+        // Background Colors - Fixed naming
         'bg-primary': "#0A0A0F",   // Deep space black
         'bg-secondary': "#111118", // Dark slate
         'bg-tertiary': "#1A1A2E",  // Midnight blue
         'bg-accent': "#16213E",    // Deep ocean
         
-        // Text Colors
+        // Text Colors - Fixed naming
         'text-primary': "#FFFFFF",   // Pure white
         'text-secondary': "#E2E8F0", // Light gray
         'text-muted': "#94A3B8",     // Muted gray
         'text-accent': "#00D4FF",    // Electric blue text
         
-        // Border Colors
+        // Border Colors - Fixed naming
         'border-primary': "#1E293B", // Dark borders
         'border-accent': "#00D4FF",  // Glowing borders
         'border-glow': "rgba(0, 212, 255, 0.3)", // Subtle glow
@@ -35,6 +39,10 @@ module.exports = {
         'accent-secondary': "#7C3AED",  // Electric purple
         'accent-tertiary': "#10B981",   // Neon green
         'accent-warning': "#F59E0B",    // Amber glow
+        'accent-pink': "#EC4899",       // Neon pink
+        'accent-orange': "#F97316",     // Neon orange
+        'accent-cyan': "#06B6D4",       // Neon cyan
+        'accent-yellow': "#EAB308",     // Neon yellow
       },
       borderRadius: {
         'sm': '0.25rem',    // Sharp corners

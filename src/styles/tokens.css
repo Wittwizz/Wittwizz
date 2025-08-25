@@ -15,6 +15,10 @@
   --accent-secondary: #7C3AED;    /* Electric purple */
   --accent-tertiary: #10B981;     /* Neon green */
   --accent-warning: #F59E0B;      /* Amber glow */
+  --accent-pink: #EC4899;         /* Neon pink */
+  --accent-orange: #F97316;       /* Neon orange */
+  --accent-cyan: #06B6D4;         /* Neon cyan */
+  --accent-yellow: #EAB308;       /* Neon yellow */
   
   /* Text Colors - High Contrast */
   --text-primary: #FFFFFF;        /* Pure white */

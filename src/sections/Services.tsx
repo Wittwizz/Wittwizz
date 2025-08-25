@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Palette, Globe, TrendingUp, Users, Zap, Shield, Target, Rocket } from 'lucide-react';
-import { StaggeredContainer, GradientBorderCard, AnimatedBackground } from '@/ui';
+import { StaggeredContainer, GradientBorderCard } from '@/ui';
 
 const services = [
   {
@@ -55,12 +55,12 @@ const processSteps = [
 
 export default function Services() {
   return (
-    <AnimatedBackground className="py-20 bg-bg-primary relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden min-h-screen flex items-center">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <StaggeredContainer staggerDelay={0.2} initialDelay={0.3}>
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary border border-accent-secondary rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary/80 backdrop-blur-md border border-accent-secondary rounded-full mb-6">
               <Zap className="w-4 h-4 text-accent-secondary" />
               <span className="text-accent-secondary text-sm font-medium">Our Services</span>
             </div>
@@ -185,6 +185,6 @@ export default function Services() {
           </div>
         </StaggeredContainer>
       </div>
-    </AnimatedBackground>
+    </section>
   );
 }

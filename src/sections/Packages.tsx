@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Check, Zap, Rocket, TrendingUp, Star, ArrowRight, Target, Shield } from 'lucide-react';
-import { StaggeredContainer, GradientBorderCard, AnimatedBackground } from '@/ui';
+import { StaggeredContainer, GradientBorderCard } from '@/ui';
 
 const packages = [
   {
@@ -62,13 +62,36 @@ const packages = [
 ];
 
 export default function Packages() {
+  const handleGetCustomQuote = () => {
+    const message = encodeURIComponent(`Hi Wittwiz Team! 👋
+
+I'm interested in getting a custom quote for my startup project! Here's what I'm looking for:
+
+🎯 **My Startup:**
+[Brief description of your amazing idea]
+
+💡 **What I Need:**
+[Specific services you require - e.g., custom website, advanced branding, growth strategy, etc.]
+
+💰 **Budget Range:** [Your budget range]
+⏰ **Timeline:** [When you want to launch]
+📱 **Best Contact:** [Your preferred contact method]
+
+I'm excited to discuss how Wittwiz can help me create something incredible! 
+
+Looking forward to hearing from you! 🚀✨`);
+
+    const whatsappLink = `https://wa.me/918800608399?text=${message}`;
+    window.open(whatsappLink, '_blank');
+  };
+
   return (
-    <AnimatedBackground className="py-20 bg-bg-secondary relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden min-h-screen flex items-center">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <StaggeredContainer staggerDelay={0.2} initialDelay={0.3}>
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary border border-accent-tertiary rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary/80 backdrop-blur-md border border-accent-tertiary rounded-full mb-6">
               <Star className="w-4 h-4 text-accent-tertiary" />
               <span className="text-accent-tertiary text-sm font-medium">Pricing & Packages</span>
             </div>
@@ -151,11 +174,44 @@ export default function Packages() {
                   </ul>
                   
                   {/* CTA Button */}
-                  <button className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                    pkg.popular
-                      ? 'bg-gradient-to-r from-accent-secondary to-accent-primary text-bg-primary hover:scale-105'
-                      : 'bg-bg-secondary text-accent-primary border-2 border-accent-primary hover:bg-accent-primary hover:text-bg-primary'
-                  }`}>
+                  <button 
+                    onClick={() => {
+                      const subject = encodeURIComponent(`🚀 Interested in ${pkg.name} Package - Wittwiz Digital`);
+                      const body = encodeURIComponent(`Hi Wittwiz Team! 👋
+
+I'm really interested in your **${pkg.name}** package! Here's what I'm looking for:
+
+📦 **Package Details:**
+- Package: ${pkg.name}
+- Price: ${pkg.price} + 18% GST
+- Timeline: ${pkg.timeline}
+- Tagline: ${pkg.tagline}
+
+💡 **My Requirements:**
+- ${pkg.description}
+- Key features I need: ${pkg.features.slice(0, 3).join(', ')}
+
+🎯 **Next Steps:**
+I'd love to schedule a call to discuss this package in detail and get started on my project.
+
+💰 **Budget Confirmed:** Yes, within my budget range
+⏰ **Preferred Timeline:** [When you want to start]
+📱 **Best Contact:** [Your preferred contact method]
+
+I'm excited to work with Wittwiz and can't wait to get the ball rolling on my startup!
+
+Best regards,
+[Your Name]
+[Your Contact Number]`);
+
+                      const mailtoLink = `mailto:wittwizdigitals@gmail.com?subject=${subject}&body=${body}`;
+                      window.open(mailtoLink, '_blank');
+                    }}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
+                      pkg.popular
+                        ? 'bg-gradient-to-r from-accent-secondary to-accent-primary text-bg-primary hover:scale-105'
+                        : 'bg-bg-secondary text-accent-primary border-2 border-accent-primary hover:bg-accent-primary hover:text-bg-primary'
+                    }`}>
                     Choose {pkg.name}
                   </button>
                 </GradientBorderCard>
@@ -170,14 +226,17 @@ export default function Packages() {
             <p className="text-text-secondary mb-6">
               Need a custom solution? Let's discuss your specific requirements.
             </p>
-            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent-primary to-accent-secondary text-bg-primary font-semibold rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <button 
+              onClick={handleGetCustomQuote}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent-primary to-accent-secondary text-bg-primary font-semibold rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+            >
               <Shield className="w-5 h-5" />
               Get Custom Quote
               <ArrowRight className="w-5 h-5" />
-            </div>
+            </button>
           </div>
         </StaggeredContainer>
       </div>
-    </AnimatedBackground>
+    </section>
   );
 }
