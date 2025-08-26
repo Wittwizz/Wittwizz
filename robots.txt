@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://wittwizz.github.io/Wittwizz/sitemap.xml
+
+# Optimize crawl budget
+Crawl-delay: 1
+
+# Block unnecessary paths (if any)
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /*.log
+Disallow: /*.json$
+
+# Allow important assets
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.svg
