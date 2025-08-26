@@ -5,9 +5,31 @@ import Features from '../sections/Features';
 import Services from '../sections/Services';
 import Packages from '../sections/Packages';
 import FinalCTA from '../ui/FinalCTA';
+import SEOHead from './SEOHead';
 
 const AppRouter: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
+
+  // Handle 404 redirects from GitHub Pages
+  useEffect(() => {
+    const redirectPath = sessionStorage.getItem('redirectPath');
+    if (redirectPath && redirectPath !== '/Wittwizz/') {
+      sessionStorage.removeItem('redirectPath');
+      // Handle hash navigation for SPA sections
+      if (redirectPath.includes('#')) {
+        const hash = redirectPath.split('#')[1];
+        const sectionMap: { [key: string]: number } = {
+          'features': 1,
+          'services': 2,
+          'packages': 3,
+          'contact': 4
+        };
+        if (sectionMap[hash] !== undefined) {
+          setTimeout(() => scrollToSection(sectionMap[hash]), 100);
+        }
+      }
+    }
+  }, []);
 
   // Track which section is currently in view
   useEffect(() => {
@@ -62,8 +84,43 @@ const AppRouter: React.FC = () => {
     }
   };
 
+  // Get section-specific SEO data
+  const getSectionSEO = () => {
+    const sectionData = [
+      {
+        title: "Wittwiz Digital - AI-Powered Brand & Growth Partner",
+        description: "AI-powered brand, web, and growth partner for India's startups. Founder-friendly, efficient delivery.",
+        canonical: "https://wittwizz.github.io/Wittwizz/"
+      },
+      {
+        title: "Features - Wittwiz Digital",
+        description: "Lightning fast delivery, precision focused approach, and launch-ready solutions for startups.",
+        canonical: "https://wittwizz.github.io/Wittwizz/#features"
+      },
+      {
+        title: "Services - Wittwiz Digital",
+        description: "Complete digital services: Brand development, web development, and growth marketing for startups.",
+        canonical: "https://wittwizz.github.io/Wittwizz/#services"
+      },
+      {
+        title: "Packages & Pricing - Wittwiz Digital",
+        description: "Affordable packages for startups: Essentials, Growth, and Scale packages with transparent pricing.",
+        canonical: "https://wittwizz.github.io/Wittwizz/#packages"
+      },
+      {
+        title: "Contact Us - Wittwiz Digital",
+        description: "Get started with Wittwiz Digital. Schedule a call or start your project today.",
+        canonical: "https://wittwizz.github.io/Wittwizz/#contact"
+      }
+    ];
+    return sectionData[currentSection] || sectionData[0];
+  };
+
   return (
     <>
+      {/* Dynamic SEO Head */}
+      <SEOHead {...getSectionSEO()} />
+      
       {/* Beautiful Floating Navigation - Synced with current section */}
       <FloatingNavigation currentPage={currentSection} onNavigate={scrollToSection} />
       
