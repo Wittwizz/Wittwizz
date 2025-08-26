@@ -14,6 +14,7 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     cssCodeSplit: false,
+    assetsInlineLimit: 0,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -23,6 +24,7 @@ export default defineConfig({
       }
     }
   },
+  publicDir: 'public',
   server: {
     port: 3000,
     open: true

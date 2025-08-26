@@ -21,19 +21,22 @@ try {
   fs.mkdirSync(pricingDir, { recursive: true });
   fs.copyFileSync('content/pricing/services.json', path.join(pricingDir, 'services.json'));
   
-  // 3. Copy SEO files
-  console.log('🔍 Setting up SEO files...');
-  if (fs.existsSync('public/robots.txt')) {
-    fs.copyFileSync('public/robots.txt', 'dist/robots.txt');
-    console.log('✅ robots.txt copied successfully');
+  // 3. Verify SEO files (Vite automatically copies public files)
+  console.log('🔍 Verifying SEO files...');
+  if (fs.existsSync('dist/robots.txt')) {
+    console.log('✅ robots.txt found in dist');
   }
-  if (fs.existsSync('public/sitemap.xml')) {
-    fs.copyFileSync('public/sitemap.xml', 'dist/sitemap.xml');
-    console.log('✅ sitemap.xml copied successfully');
+  if (fs.existsSync('dist/sitemap.xml')) {
+    console.log('✅ sitemap.xml found in dist');
   }
-  if (fs.existsSync('public/google5c08b7a4e81dc354.html')) {
-    fs.copyFileSync('public/google5c08b7a4e81dc354.html', 'dist/google5c08b7a4e81dc354.html');
-    console.log('✅ Google Search Console verification file copied successfully');
+  if (fs.existsSync('dist/google5c08b7a4e81dc354.html')) {
+    console.log('✅ Google Search Console verification file found in dist');
+  } else {
+    console.log('⚠️ Google verification file not found, copying manually...');
+    if (fs.existsSync('public/google5c08b7a4e81dc354.html')) {
+      fs.copyFileSync('public/google5c08b7a4e81dc354.html', 'dist/google5c08b7a4e81dc354.html');
+      console.log('✅ Google verification file copied manually');
+    }
   }
   
   // 4. Verify the files were created
