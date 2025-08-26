@@ -4,6 +4,11 @@ import App from './App.tsx'
 import './styles/tokens.css'
 import './styles/index.css'
 import { initSEOPreloader } from './utils/seoPreloader'
+import { initPerformanceMonitoring, preloadCriticalResources } from './utils/performanceMonitor'
+
+// Initialize performance optimizations
+initPerformanceMonitoring();
+preloadCriticalResources();
 
 // Initialize SEO optimizations
 initSEOPreloader();

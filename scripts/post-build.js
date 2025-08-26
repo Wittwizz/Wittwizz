@@ -53,6 +53,32 @@ try {
   fs.copyFileSync('dist/index.html', 'index.html');
   console.log('✅ Root index.html replaced with production build');
   
+  // 6. Add critical resource preloads to the built HTML
+  console.log('⚡ Adding performance optimizations...');
+  let htmlContent = fs.readFileSync('index.html', 'utf8');
+  
+  // Find built asset filenames
+  const cssMatch = htmlContent.match(/href="([^"]*\.css)"/);
+  const jsMatches = htmlContent.match(/src="([^"]*\.js)"/g);
+  
+  if (cssMatch) {
+    const cssFile = cssMatch[1];
+    const preloadCSS = `    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'">\n    <noscript><link rel="stylesheet" href="${cssFile}"></noscript>\n`;
+    htmlContent = htmlContent.replace('</head>', `    ${preloadCSS}</head>`);
+  }
+  
+  if (jsMatches) {
+    let preloadJS = '';
+    jsMatches.forEach(match => {
+      const jsFile = match.match(/src="([^"]*)"/)[1];
+      preloadJS += `    <link rel="preload" href="${jsFile}" as="script">\n`;
+    });
+    htmlContent = htmlContent.replace('</head>', `${preloadJS}</head>`);
+  }
+  
+  fs.writeFileSync('index.html', htmlContent);
+  console.log('✅ Performance preloads added');
+  
   console.log('🎉 Post-build script completed successfully!');
 } catch (error) {
   console.error('❌ Post-build script failed:', error);

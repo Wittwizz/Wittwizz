@@ -4,7 +4,7 @@ import { TypewriterEffect } from '@/ui';
 
 export default function Hero() {
   return (
-    <div className="min-h-screen text-text-primary flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen text-text-primary flex items-center justify-center relative overflow-hidden performance-optimize">
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto text-center px-4">
 

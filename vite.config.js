@@ -14,13 +14,25 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     cssCodeSplit: false,
-    assetsInlineLimit: 0,
+    assetsInlineLimit: 4096, // Inline small assets
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           icons: ['lucide-react']
-        }
+        },
+        // Optimize file names for better caching
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    },
+    // Enable minification
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
       }
     }
   },

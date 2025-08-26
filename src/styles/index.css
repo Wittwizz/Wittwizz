@@ -14,10 +14,15 @@
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     min-height: 100vh;
     overflow-x: hidden;
+    /* Prevent layout shift */
+    contain: layout style paint;
+    will-change: transform;
   }
   
   html {
     scroll-behavior: smooth;
+    /* Prevent forced reflow */
+    contain: layout;
   }
   
   /* Custom scrollbar */
@@ -36,6 +41,29 @@
   
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-accent-primary;
+  }
+  
+  /* Performance optimizations */
+  .performance-optimize {
+    contain: layout style paint;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Prevent layout shift for images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Optimize animations */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
   
   /* Selection styles */
