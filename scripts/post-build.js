@@ -48,6 +48,11 @@ try {
     console.log('✅ Pricing data copied successfully');
   }
   
+  // 5. Replace root index.html with built version for GitHub Pages
+  console.log('🔄 Setting up GitHub Pages deployment...');
+  fs.copyFileSync('dist/index.html', 'index.html');
+  console.log('✅ Root index.html replaced with production build');
+  
   console.log('🎉 Post-build script completed successfully!');
 } catch (error) {
   console.error('❌ Post-build script failed:', error);
