@@ -27,14 +27,8 @@ export default defineConfig({
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
+    // Enable minification with esbuild instead of terser for compatibility
+    minify: 'esbuild'
   },
   publicDir: 'public',
   server: {
