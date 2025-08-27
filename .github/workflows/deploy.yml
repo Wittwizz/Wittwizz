@@ -25,14 +25,36 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
           
       - name: Install dependencies
         run: npm ci
         
-      - name: Build project
-        run: npm run build
+      - name: Build project for CI
+        run: |
+          # Build the project without modifying root index.html
+          npx vite build
+          # Run only the CI-safe parts of post-build
+          node -e "
+            import fs from 'fs';
+            import path from 'path';
+            console.log('🔧 Running CI-safe post-build tasks...');
+            
+            // Create 404.html for SPA routing
+            if (fs.existsSync('public/404.html')) {
+              fs.copyFileSync('public/404.html', 'dist/404.html');
+            } else {
+              fs.copyFileSync('dist/index.html', 'dist/404.html');
+            }
+            
+            // Copy pricing data
+            const pricingDir = 'dist/content/pricing';
+            fs.mkdirSync(pricingDir, { recursive: true });
+            fs.copyFileSync('content/pricing/services.json', path.join(pricingDir, 'services.json'));
+            
+            console.log('✅ CI-safe post-build completed');
+          "
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
