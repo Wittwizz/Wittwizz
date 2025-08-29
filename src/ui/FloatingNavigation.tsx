@@ -25,15 +25,15 @@ const FloatingNavigation: React.FC<FloatingNavigationProps> = ({ currentPage = 0
 
   return (
     <>
-      {/* Desktop Floating Navigation - Enhanced visibility */}
+      {/* Desktop Floating Navigation - Balanced visibility with theme */}
       <div className="hidden md:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="bg-white/95 backdrop-blur-md border border-gray-200/50 rounded-2xl px-6 py-3 shadow-2xl"
+          className="bg-gray-900/90 backdrop-blur-md border border-blue-400/30 rounded-2xl px-6 py-3 shadow-2xl"
           style={{ 
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)' 
+            boxShadow: '0 20px 25px -5px rgba(0, 212, 255, 0.15), 0 10px 10px -5px rgba(0, 212, 255, 0.1), 0 0 0 1px rgba(0, 212, 255, 0.2)' 
           }}
         >
           <nav className="flex items-center gap-1">
@@ -47,8 +47,8 @@ const FloatingNavigation: React.FC<FloatingNavigationProps> = ({ currentPage = 0
                   onClick={() => scrollToPage(item.path)}
                   className={`relative px-4 py-2 rounded-xl transition-all duration-300 group ${
                     isActive 
-                      ? 'text-blue-600 bg-blue-50 font-semibold' 
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                      ? 'text-blue-400 bg-blue-500/20 font-semibold' 
+                      : 'text-gray-300 hover:text-blue-400 hover:bg-blue-500/10'
                   }`}
                 >
                   <div className="flex items-center gap-2">
@@ -60,7 +60,7 @@ const FloatingNavigation: React.FC<FloatingNavigationProps> = ({ currentPage = 0
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute inset-0 bg-blue-100 rounded-xl border border-blue-200"
+                      className="absolute inset-0 bg-blue-500/20 rounded-xl border border-blue-400/40"
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
@@ -76,16 +76,16 @@ const FloatingNavigation: React.FC<FloatingNavigationProps> = ({ currentPage = 0
       <div className="md:hidden fixed top-4 right-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-3 bg-white/95 backdrop-blur-md border border-gray-200/50 rounded-xl shadow-lg"
+          className="p-3 bg-gray-900/90 backdrop-blur-md border border-blue-400/30 rounded-xl shadow-lg"
         >
           <div className="w-6 h-6 flex flex-col justify-center items-center">
-            <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${
+            <span className={`block w-5 h-0.5 bg-gray-300 transition-all duration-300 ${
               isOpen ? 'rotate-45 translate-y-1.5' : ''
             }`} />
-            <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 mt-1 ${
+            <span className={`block w-5 h-0.5 bg-gray-300 transition-all duration-300 mt-1 ${
               isOpen ? 'opacity-0' : ''
             }`} />
-            <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 mt-1 ${
+            <span className={`block w-5 h-0.5 bg-gray-300 transition-all duration-300 mt-1 ${
               isOpen ? '-rotate-45 -translate-y-1.5' : ''
             }`} />
           </div>
@@ -99,7 +99,7 @@ const FloatingNavigation: React.FC<FloatingNavigationProps> = ({ currentPage = 0
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="md:hidden fixed inset-0 bg-white/95 backdrop-blur-md z-40"
+            className="md:hidden fixed inset-0 bg-gray-900/95 backdrop-blur-md z-40"
           >
             <div className="flex flex-col items-center justify-center min-h-screen p-8">
               <nav className="flex flex-col items-center gap-6">
@@ -116,8 +116,8 @@ const FloatingNavigation: React.FC<FloatingNavigationProps> = ({ currentPage = 0
                       }}
                       className={`flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 ${
                         isActive 
-                          ? 'text-blue-600 bg-blue-50 font-semibold' 
-                          : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                          ? 'text-blue-400 bg-blue-500/20 font-semibold' 
+                          : 'text-gray-300 hover:text-blue-400 hover:bg-blue-500/10'
                       }`}
                     >
                       <Icon className="w-6 h-6" />
