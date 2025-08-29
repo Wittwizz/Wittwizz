@@ -53,40 +53,68 @@ try {
   fs.copyFileSync('dist/index.html', 'index.html');
   console.log('✅ Root index.html replaced with production build');
   
-  // 6. Add critical resource preloads to the built HTML (avoiding duplicates)
-  console.log('⚡ Adding performance optimizations...');
+  // 6. Add critical resource preloads with comprehensive duplicate prevention
+  console.log('⚡ Adding performance optimizations with health checks...');
   let htmlContent = fs.readFileSync('index.html', 'utf8');
   
-  // Check if preloads already exist to avoid duplicates
-  const hasPreloadCSS = htmlContent.includes('rel="preload"') && htmlContent.includes('as="style"');
-  const hasPreloadJS = htmlContent.includes('rel="preload"') && htmlContent.includes('as="script"');
+  // Advanced duplicate detection - check for specific patterns
+  const cssLinkPattern = /<link[^>]+rel="stylesheet"[^>]*>/g;
+  const cssPreloadPattern = /<link[^>]+rel="preload"[^>]+as="style"[^>]*>/g;
+  const jsPreloadPattern = /<link[^>]+rel="preload"[^>]+as="script"[^>]*>/g;
   
-  if (!hasPreloadCSS || !hasPreloadJS) {
-    // Find built asset filenames
-    const cssMatch = htmlContent.match(/href="([^"]*\.css)"/);
-    const jsMatches = htmlContent.match(/src="([^"]*\.js)"/g);
-    
-    // Only add CSS preload if it doesn't exist
-    if (cssMatch && !hasPreloadCSS) {
-      const cssFile = cssMatch[1];
-      const preloadCSS = `    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'">\n    <noscript><link rel="stylesheet" href="${cssFile}"></noscript>\n`;
-      htmlContent = htmlContent.replace('</head>', `${preloadCSS}</head>`);
-    }
-    
-    // Only add JS preloads if they don't exist
-    if (jsMatches && !hasPreloadJS) {
-      let preloadJS = '';
-      jsMatches.forEach(match => {
-        const jsFile = match.match(/src="([^"]*)"/)[1];
-        preloadJS += `    <link rel="preload" href="${jsFile}" as="script">\n`;
-      });
-      htmlContent = htmlContent.replace('</head>', `${preloadJS}</head>`);
-    }
-    
+  const existingCSSLinks = htmlContent.match(cssLinkPattern) || [];
+  const existingCSSPreloads = htmlContent.match(cssPreloadPattern) || [];
+  const existingJSPreloads = htmlContent.match(jsPreloadPattern) || [];
+  
+  console.log(`🔍 Health Check - Found ${existingCSSLinks.length} CSS links, ${existingCSSPreloads.length} CSS preloads, ${existingJSPreloads.length} JS preloads`);
+  
+  // Find built asset filenames
+  const cssMatch = htmlContent.match(/rel="stylesheet"[^>]+href="([^"]*\.css)"/);
+  const jsMatches = htmlContent.match(/src="([^"]*\.js)"/g);
+  
+  let modificationsNeeded = false;
+  
+  // Only add CSS preload if none exist and we have a CSS file
+  // CRITICAL: Don't add preloads if CSS stylesheet already exists
+  if (cssMatch && existingCSSPreloads.length === 0 && existingCSSLinks.length <= 1) {
+    const cssFile = cssMatch[1];
+    const preloadCSS = `    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'">\n    <noscript><link rel="stylesheet" href="${cssFile}"></noscript>\n`;
+    htmlContent = htmlContent.replace('</head>', `${preloadCSS}</head>`);
+    modificationsNeeded = true;
+    console.log(`✅ Added CSS preload for ${cssFile}`);
+  } else if (existingCSSLinks.length > 1) {
+    console.log(`⚠️ Skipping CSS preload - ${existingCSSLinks.length} CSS links already exist`);
+  }
+  
+  // Only add JS preloads if none exist and we have JS files
+  if (jsMatches && existingJSPreloads.length === 0) {
+    let preloadJS = '';
+    jsMatches.forEach(match => {
+      const jsFile = match.match(/src="([^"]*)"/)[1];
+      preloadJS += `    <link rel="preload" href="${jsFile}" as="script">\n`;
+    });
+    htmlContent = htmlContent.replace('</head>', `${preloadJS}</head>`);
+    modificationsNeeded = true;
+    console.log(`✅ Added JS preloads for ${jsMatches.length} files`);
+  }
+  
+  if (modificationsNeeded) {
     fs.writeFileSync('index.html', htmlContent);
-    console.log('✅ Performance preloads added (no duplicates)');
+    console.log('✅ Performance preloads added with health validation');
   } else {
-    console.log('✅ Performance preloads already exist, skipping to avoid duplicates');
+    console.log('✅ No preload modifications needed - HTML is healthy');
+  }
+  
+  // Final health check
+  const finalContent = fs.readFileSync('index.html', 'utf8');
+  const finalCSSLinks = finalContent.match(cssLinkPattern) || [];
+  const finalCSSPreloads = finalContent.match(cssPreloadPattern) || [];
+  
+  if (finalCSSLinks.length > 1 || finalCSSPreloads.length > 1) {
+    console.warn('⚠️ WARNING: Potential duplicate CSS detected!');
+    console.log(`Final state: ${finalCSSLinks.length} CSS links, ${finalCSSPreloads.length} CSS preloads`);
+  } else {
+    console.log('🎯 HTML Health Check PASSED - No duplicates detected');
   }
   
   console.log('🎉 Post-build script completed successfully!');
