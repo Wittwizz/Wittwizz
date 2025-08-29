@@ -74,16 +74,18 @@ try {
   
   let modificationsNeeded = false;
   
-  // Only add CSS preload if none exist and we have a CSS file
-  // CRITICAL: Don't add preloads if CSS stylesheet already exists
-  if (cssMatch && existingCSSPreloads.length === 0 && existingCSSLinks.length <= 1) {
+  // Only add CSS preload if none exist and we have exactly one CSS file
+  // CRITICAL: Don't add preloads if CSS stylesheet already exists or if we have duplicates
+  if (cssMatch && existingCSSPreloads.length === 0 && existingCSSLinks.length === 1) {
     const cssFile = cssMatch[1];
     const preloadCSS = `    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'">\n    <noscript><link rel="stylesheet" href="${cssFile}"></noscript>\n`;
     htmlContent = htmlContent.replace('</head>', `${preloadCSS}</head>`);
     modificationsNeeded = true;
     console.log(`✅ Added CSS preload for ${cssFile}`);
   } else if (existingCSSLinks.length > 1) {
-    console.log(`⚠️ Skipping CSS preload - ${existingCSSLinks.length} CSS links already exist`);
+    console.log(`⚠️ Skipping CSS preload - ${existingCSSLinks.length} CSS links already exist (preventing duplicates)`);
+  } else if (existingCSSPreloads.length > 0) {
+    console.log(`⚠️ Skipping CSS preload - ${existingCSSPreloads.length} CSS preloads already exist`);
   }
   
   // Only add JS preloads if none exist and we have JS files
