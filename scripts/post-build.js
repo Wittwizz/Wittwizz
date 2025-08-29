@@ -48,14 +48,15 @@ try {
     console.log('✅ Pricing data copied successfully');
   }
   
-  // 5. Replace root index.html with built version for GitHub Pages
+  // 5. Setup GitHub Pages deployment with safe HTML handling
   console.log('🔄 Setting up GitHub Pages deployment...');
-  fs.copyFileSync('dist/index.html', 'index.html');
-  console.log('✅ Root index.html replaced with production build');
+  
+  // Read the clean dist HTML (not the corrupted root HTML)
+  let htmlContent = fs.readFileSync('dist/index.html', 'utf8');
+  console.log('✅ Reading clean dist HTML for GitHub Pages');
   
   // 6. Add critical resource preloads with comprehensive duplicate prevention
   console.log('⚡ Adding performance optimizations with health checks...');
-  let htmlContent = fs.readFileSync('index.html', 'utf8');
   
   // Advanced duplicate detection - check for specific patterns
   const cssLinkPattern = /<link[^>]+rel="stylesheet"[^>]*>/g;
@@ -100,11 +101,13 @@ try {
     console.log(`✅ Added JS preloads for ${jsMatches.length} files`);
   }
   
+  // Write the final HTML to root for GitHub Pages
+  fs.writeFileSync('index.html', htmlContent);
+  
   if (modificationsNeeded) {
-    fs.writeFileSync('index.html', htmlContent);
     console.log('✅ Performance preloads added with health validation');
   } else {
-    console.log('✅ No preload modifications needed - HTML is healthy');
+    console.log('✅ Clean HTML copied to root - no preload modifications needed');
   }
   
   // Final health check
