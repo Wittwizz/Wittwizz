@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/post-build.js",
-    "build:safe": "node scripts/health-monitor.js --no-remote && npm run build && node scripts/health-monitor.js --no-remote",
+    "build": "node scripts/pre-build.js && vite build && node scripts/post-build.js",
+    "build:safe": "node scripts/pre-build.js && node scripts/health-monitor.js --no-remote && vite build && node scripts/post-build.js && node scripts/health-monitor.js --no-remote",
     "preview": "vite preview",
     "deploy": "npm run build:safe && git add . && git commit -m \"Deploy: $(date)\" && git push origin lp-v1 && node scripts/validate-deployment.js",
     "health:check": "node scripts/health-monitor.js",
