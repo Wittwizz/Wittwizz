@@ -44,6 +44,15 @@ jobs:
         with:
           path: './dist'
           
+      - name: Verify deployment contents
+        run: |
+          echo "🔍 Verifying dist contents before upload..."
+          ls -la dist/
+          echo "📁 Assets folder:"
+          ls -la dist/assets/
+          echo "📄 Main files:"
+          ls -la dist/*.html dist/*.txt dist/*.xml
+          
   # Deployment job
   deploy:
     environment:
