@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Check, Zap, Rocket, TrendingUp, Star, ArrowRight, Target, Shield } from 'lucide-react';
 import { StaggeredContainer, GradientBorderCard } from '@/ui';
+import { openLeadForm } from '@/utils/leadForm';
 
 const packages = [
   {
@@ -62,29 +63,6 @@ const packages = [
 ];
 
 export default function Packages() {
-  const handleGetCustomQuote = () => {
-    const message = encodeURIComponent(`Hi Wittwiz Team! 👋
-
-I'm interested in getting a custom quote for my startup project! Here's what I'm looking for:
-
-🎯 **My Startup:**
-[Brief description of your amazing idea]
-
-💡 **What I Need:**
-[Specific services you require - e.g., custom website, advanced branding, growth strategy, etc.]
-
-💰 **Budget Range:** [Your budget range]
-⏰ **Timeline:** [When you want to launch]
-📱 **Best Contact:** [Your preferred contact method]
-
-I'm excited to discuss how Wittwiz can help me create something incredible! 
-
-Looking forward to hearing from you! 🚀✨`);
-
-    const whatsappLink = `https://wa.me/918800608399?text=${message}`;
-    window.open(whatsappLink, '_blank');
-  };
-
   return (
     <section className="py-20 relative overflow-hidden min-h-screen flex items-center">
       <div className="container mx-auto px-4 relative z-10">
@@ -174,39 +152,13 @@ Looking forward to hearing from you! 🚀✨`);
                   </ul>
                   
                   {/* CTA Button */}
-                  <button 
-                    onClick={() => {
-                      const subject = encodeURIComponent(`🚀 Interested in ${pkg.name} Package - Wittwiz Digital`);
-                      const body = encodeURIComponent(`Hi Wittwiz Team! 👋
-
-I'm really interested in your **${pkg.name}** package! Here's what I'm looking for:
-
-📦 **Package Details:**
-- Package: ${pkg.name}
-- Price: ${pkg.price} + 18% GST
-- Timeline: ${pkg.timeline}
-- Tagline: ${pkg.tagline}
-
-💡 **My Requirements:**
-- ${pkg.description}
-- Key features I need: ${pkg.features.slice(0, 3).join(', ')}
-
-🎯 **Next Steps:**
-I'd love to schedule a call to discuss this package in detail and get started on my project.
-
-💰 **Budget Confirmed:** Yes, within my budget range
-⏰ **Preferred Timeline:** [When you want to start]
-📱 **Best Contact:** [Your preferred contact method]
-
-I'm excited to work with Wittwiz and can't wait to get the ball rolling on my startup!
-
-Best regards,
-[Your Name]
-[Your Contact Number]`);
-
-                      const mailtoLink = `mailto:wittwizdigitals@gmail.com?subject=${subject}&body=${body}`;
-                      window.open(mailtoLink, '_blank');
-                    }}
+                  <button
+                    onClick={() =>
+                      openLeadForm({
+                        goal: `Interested in the ${pkg.name} package`,
+                        context: `${pkg.name} package selected`
+                      })
+                    }
                     className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
                       pkg.popular
                         ? 'bg-gradient-to-r from-accent-secondary to-accent-primary text-bg-primary hover:scale-105'
@@ -226,8 +178,13 @@ Best regards,
             <p className="text-text-secondary mb-6">
               Need a custom solution? Let's discuss your specific requirements.
             </p>
-            <button 
-              onClick={handleGetCustomQuote}
+            <button
+              onClick={() =>
+                openLeadForm({
+                  goal: 'Need a custom quote',
+                  context: 'Custom solution requested'
+                })
+              }
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent-primary to-accent-secondary text-bg-primary font-semibold rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               <Shield className="w-5 h-5" />

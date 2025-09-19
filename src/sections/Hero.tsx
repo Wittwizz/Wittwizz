@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ArrowRight, Sparkles, Zap, Target } from 'lucide-react';
 import { TypewriterEffect } from '@/ui';
+import { openLeadForm } from '@/utils/leadForm';
+import { openFounderCall } from '@/utils/contact';
 
 export default function Hero() {
   return (
@@ -65,52 +67,22 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-          <button 
-            onClick={() => {
-              const packagesSection = document.querySelector('[data-section="packages"]');
-              if (packagesSection) {
-                packagesSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+          <button
+            onClick={() =>
+              openLeadForm({
+                goal: 'Plan my 30-day launch sprint',
+                context: 'Ready for the 30-day launch plan'
+              })
+            }
             className="bg-gradient-to-r from-accent-primary to-accent-secondary text-bg-primary font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0 flex items-center gap-3 group cursor-pointer"
           >
             <Target className="w-5 h-5" />
             See the 30-day launch plan
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
-          
+
           <button
-            onClick={() => {
-              const subject = encodeURIComponent("🚀 Book My Traction Validation Call - Wittwiz Digital");
-              const body = encodeURIComponent(`Hi Wittwiz Team! 👋
-
-I'm ready to validate a 30-day launch with Wittwiz. Here's what I'm building:
-
-🎯 **Startup Snapshot:**
-[Tell us about your product, audience, and current traction]
-
-📈 **Targets for the Next 30 Days:**
-- Qualified leads or sign-ups goal
-- Revenue or activation milestone
-- Launch date or campaign deadline
-
-🧰 **Support I Need:**
-- Brand and story alignment
-- Conversion-first website or funnel
-- Paid demand engine
-
-💰 **Current Stage:** [Idea, MVP, Post-MVP, etc.]
-📱 **Best Contact:** [Your preferred contact method]
-
-Excited to co-create the launch plan with Wittwiz!
-
-Best,
-[Your Name]
-[Your Contact Number]`);
-
-              const mailtoLink = `mailto:wittwizdigitals@gmail.com?subject=${subject}&body=${body}`;
-              window.open(mailtoLink, '_blank');
-            }}
+            onClick={openFounderCall}
             className="bg-bg-tertiary/80 backdrop-blur-md text-accent-primary border-2 border-accent-primary font-semibold px-8 py-4 rounded-lg hover:bg-accent-primary hover:text-bg-primary transition-all duration-300 flex items-center gap-3 group cursor-pointer"
           >
             <Zap className="w-5 h-5" />
