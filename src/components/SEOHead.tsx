@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { BRAND_NAME } from '@/content/brand';
 
 interface SEOHeadProps {
   title?: string;
@@ -7,8 +8,8 @@ interface SEOHeadProps {
   ogImage?: string;
 }
 
-export default function SEOHead({ 
-  title = "Wittwiz Digital - AI-Powered Brand & Growth Partner",
+export default function SEOHead({
+  title = `${BRAND_NAME} - AI-Powered Brand & Growth Partner`,
   description = "AI-powered brand, web, and growth partner for India's startups. Founder-friendly, efficient delivery.",
   canonical = "https://wittwizz.github.io/Wittwizz/",
   ogImage = "https://wittwizz.github.io/Wittwizz/assets/hero_og.jpg"

@@ -1,3 +1,5 @@
+import { BRAND_NAME } from '@/content/brand';
+
 // SEO Preloader for GitHub Pages SPA
 export const initSEOPreloader = () => {
   // Preload critical resources
@@ -96,7 +98,7 @@ export const updatePageForSEO = (section: string) => {
   if (typeof gtag === 'function') {
     gtag('config', 'GA_MEASUREMENT_ID', {
       page_path: `/#${section}`,
-      page_title: `${section.charAt(0).toUpperCase() + section.slice(1)} - Wittwiz Digital`
+      page_title: `${section.charAt(0).toUpperCase() + section.slice(1)} - ${BRAND_NAME}`
     });
   }
 };

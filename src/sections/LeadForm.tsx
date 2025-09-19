@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import contentMatrix from '../../content/website/content-matrix.json';
+import { BRAND_NAME, SUPPORT_EMAIL } from '@/content/brand';
 import { LeadFormField, LeadFormPrefill, subscribeToLeadFormPrefill } from '@/utils/leadForm';
 import { openFounderCall } from '@/utils/contact';
 
@@ -33,7 +34,7 @@ const fieldConfig: Record<LeadFormField, FieldConfig> = {
   },
   company: {
     label: 'Startup / company',
-    placeholder: 'Wittwiz Digital',
+    placeholder: BRAND_NAME,
     type: 'text',
     required: true
   },
@@ -178,7 +179,7 @@ const LeadForm: React.FC = () => {
     } catch (error) {
       console.error('Lead form submission failed', error);
       setStatus('error');
-      setStatusMessage('Something went wrong. Please retry or email hello@wittwizz.com.');
+      setStatusMessage(`Something went wrong. Please retry or email ${SUPPORT_EMAIL}.`);
     } finally {
       setIsSubmitting(false);
     }

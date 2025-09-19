@@ -2,11 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { openLeadForm } from '@/utils/leadForm';
 import { openFounderCall } from '@/utils/contact';
+import { BRAND_NAME } from '@/content/brand';
 
 const FinalCTA: React.FC = () => {
   const handleStartProject = () =>
     openLeadForm({
-      goal: 'I want to start a Wittwiz launch sprint',
+      goal: `I want to start a ${BRAND_NAME} launch sprint`,
       context: 'Start your project CTA'
     });
 
@@ -29,7 +30,7 @@ const FinalCTA: React.FC = () => {
             Ready to <span className="text-accent-primary">Launch</span> Your Startup?
           </h2>
           <p className="text-xl text-text-secondary mb-12 leading-relaxed">
-            Join 40+ Indian founders who've already transformed their digital presence with Wittwiz. 
+            Join 40+ Indian founders who've already transformed their digital presence with {BRAND_NAME}.
             Your futuristic growth journey starts here.
           </p>
           

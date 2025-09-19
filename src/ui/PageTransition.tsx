@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BRAND_NAME } from '@/content/brand';
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -43,7 +44,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children, className = '
               <div className="mb-4">
                 <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
               </div>
-              <h2 className="text-2xl font-bold mb-2">Wittwiz</h2>
+              <h2 className="text-2xl font-bold mb-2">{BRAND_NAME}</h2>
               <p className="text-lg opacity-90">Loading amazing content...</p>
             </div>
           </motion.div>
