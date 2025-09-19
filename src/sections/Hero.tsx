@@ -11,39 +11,29 @@ export default function Hero() {
 
         {/* Main Headline with Typewriter Effect */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
-          <span className="text-text-primary">Launch</span>
+          <span className="text-text-primary">Launch a</span>
           <br />
           <div className="inline-block">
             <TypewriterEffect
               words={[
-                "Futuristic",
-                "Innovative", 
-                "Digital",
-                "Amazing",
-                "Revolutionary",
-                "Breakthrough",
-                "Game-Changing",
-                "Cutting-Edge",
-                "Next-Gen",
-                "Transformative",
-                "Disruptive",
-                "Visionary",
-                "Pioneering",
-                "Groundbreaking",
-                "Exceptional"
+                "30-day launch plan",
+                "40+ founder-tested GTM",
+                "4.9★ founder experience",
+                "ROI-ready demand engine"
               ]}
               className="text-accent-primary"
             />
           </div>
           <br />
-          <span className="text-text-primary">Growth</span>
+          <span className="text-text-primary">that ships traction in 30 days</span>
         </h1>
 
         {/* Subtitle */}
         <p className="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-12 leading-relaxed">
-          AI-powered brand, web, and growth sprints for India's startups. 
+          We pair AI ops with senior strategists to craft your brand, conversion site, and paid funnels so you open your first
+          pipeline of qualified leads within 30 days.
           <br className="hidden md:block" />
-          <span className="text-accent-primary font-semibold">Build more. Spend less. Grow faster.</span>
+          <span className="text-accent-primary font-semibold">40+ Indian founders already launched with a 4.9★ satisfaction score.</span>
         </p>
 
         {/* Persona Badges */}
@@ -85,34 +75,36 @@ export default function Hero() {
             className="bg-gradient-to-r from-accent-primary to-accent-secondary text-bg-primary font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0 flex items-center gap-3 group cursor-pointer"
           >
             <Target className="w-5 h-5" />
-            See packages & pricing
+            See the 30-day launch plan
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
           
-          <button 
+          <button
             onClick={() => {
-              const subject = encodeURIComponent("🚀 Need Your Growth Plan - Wittwiz Digital");
+              const subject = encodeURIComponent("🚀 Book My Traction Validation Call - Wittwiz Digital");
               const body = encodeURIComponent(`Hi Wittwiz Team! 👋
 
-I'm looking for a comprehensive growth plan for my startup. Here's my vision:
+I'm ready to validate a 30-day launch with Wittwiz. Here's what I'm building:
 
-🎯 **My Startup Vision:**
-[Tell us about your amazing idea and what you want to achieve]
+🎯 **Startup Snapshot:**
+[Tell us about your product, audience, and current traction]
 
-💡 **What I'm Looking For:**
-- Growth strategy and roadmap
-- Market positioning and competitive analysis
-- Customer acquisition strategy
-- Revenue optimization
-- Scaling plan for the next 6-12 months
+📈 **Targets for the Next 30 Days:**
+- Qualified leads or sign-ups goal
+- Revenue or activation milestone
+- Launch date or campaign deadline
 
-💰 **Current Stage:** [Early stage, MVP, Post-MVP, etc.]
-⏰ **Timeline:** [When you want to start implementing]
+🧰 **Support I Need:**
+- Brand and story alignment
+- Conversion-first website or funnel
+- Paid demand engine
+
+💰 **Current Stage:** [Idea, MVP, Post-MVP, etc.]
 📱 **Best Contact:** [Your preferred contact method]
 
-I'm excited to work with Wittwiz to create a growth plan that will take my startup to the next level!
+Excited to co-create the launch plan with Wittwiz!
 
-Best regards,
+Best,
 [Your Name]
 [Your Contact Number]`);
 
@@ -122,7 +114,7 @@ Best regards,
             className="bg-bg-tertiary/80 backdrop-blur-md text-accent-primary border-2 border-accent-primary font-semibold px-8 py-4 rounded-lg hover:bg-accent-primary hover:text-bg-primary transition-all duration-300 flex items-center gap-3 group cursor-pointer"
           >
             <Zap className="w-5 h-5" />
-            Get your growth plan
+            Book your traction validation call
           </button>
         </div>
 
