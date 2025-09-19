@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Zap, Settings, Package } from 'lucide-react';
+import { Home, Zap, Settings, Package, ClipboardList, PhoneCall } from 'lucide-react';
 
 interface FloatingNavigationProps {
   currentPage?: number;
@@ -15,6 +15,8 @@ const FloatingNavigation: React.FC<FloatingNavigationProps> = ({ currentPage = 0
     { path: 1, label: 'Features', icon: Zap },
     { path: 2, label: 'Services', icon: Settings },
     { path: 3, label: 'Packages', icon: Package },
+    { path: 4, label: 'Lead Form', icon: ClipboardList },
+    { path: 5, label: 'Contact', icon: PhoneCall },
   ];
 
   const scrollToPage = (pageIndex: number) => {
