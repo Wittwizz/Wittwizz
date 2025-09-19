@@ -1,54 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { openLeadForm } from '@/utils/leadForm';
+import { openFounderCall } from '@/utils/contact';
 
 const FinalCTA: React.FC = () => {
-  const handleStartProject = () => {
-    const subject = encodeURIComponent("🚀 Ready to Launch My Startup with Wittwiz!");
-    const body = encodeURIComponent(`Hi WittWizz Team! 👋
-
-I'm excited to start my startup journey with you! Here's what I'm looking for:
-
-🎯 **My Startup Vision:**
-[Tell us about your amazing idea]
-
-💡 **What I Need:**
-- Brand identity & positioning
-- Website development
-- Growth strategy
-- [Any other specific requirements]
-
-💰 **Budget Range:** [Your budget range]
-⏰ **Timeline:** [When you want to launch]
-
-I'm ready to transform my startup from idea to reality! Let's make something incredible together.
-
-Best regards,
-[Your Name]
-[Your Contact Number]`);
-
-    const mailtoLink = `mailto:wittwizdigitals@gmail.com?subject=${subject}&body=${body}`;
-    window.open(mailtoLink, '_blank');
-  };
+  const handleStartProject = () =>
+    openLeadForm({
+      goal: 'I want to start a Wittwiz launch sprint',
+      context: 'Start your project CTA'
+    });
 
   const handleScheduleCall = () => {
-    const subject = encodeURIComponent("📞 Schedule a Strategy Call - WittWizz");
-    const body = encodeURIComponent(`Hi WittWizz Team! 👋
-
-I'd love to schedule a call to discuss my startup strategy. Here's what I'm looking for:
-
-🎯 **My Startup:** [Brief description]
-💡 **My Goals:** [What you want to achieve]
-⏰ **Preferred Time:** [When you'd like to chat]
-📱 **Best Contact:** [Your preferred contact method]
-
-I'm excited to learn how Wittwiz can help me launch and grow my startup!
-
-Best regards,
-[Your Name]
-[Your Contact Number]`);
-
-    const mailtoLink = `mailto:wittwizdigitals@gmail.com?subject=${subject}&body=${body}`;
-    window.open(mailtoLink, '_blank');
+    openFounderCall();
   };
 
   return (

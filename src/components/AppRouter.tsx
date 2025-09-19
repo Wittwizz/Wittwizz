@@ -4,6 +4,7 @@ import Hero from '../sections/Hero';
 import Features from '../sections/Features';
 import Services from '../sections/Services';
 import Packages from '../sections/Packages';
+import LeadForm from '../sections/LeadForm';
 import FinalCTA from '../ui/FinalCTA';
 import SEOHead from './SEOHead';
 
@@ -19,10 +20,12 @@ const AppRouter: React.FC = () => {
       if (redirectPath.includes('#')) {
         const hash = redirectPath.split('#')[1];
         const sectionMap: { [key: string]: number } = {
-          'features': 1,
-          'services': 2,
-          'packages': 3,
-          'contact': 4
+          features: 1,
+          services: 2,
+          packages: 3,
+          lead_form: 4,
+          'lead-form': 4,
+          contact: 5
         };
         if (sectionMap[hash] !== undefined) {
           setTimeout(() => scrollToSection(sectionMap[hash]), 100);
@@ -43,7 +46,8 @@ const AppRouter: React.FC = () => {
         { id: 1, element: document.querySelector('[data-section="features"]') },
         { id: 2, element: document.querySelector('[data-section="services"]') },
         { id: 3, element: document.querySelector('[data-section="packages"]') },
-        { id: 4, element: document.querySelector('[data-section="final-cta"]') }
+        { id: 4, element: document.querySelector('[data-section="lead-form"]') },
+        { id: 5, element: document.querySelector('[data-section="final-cta"]') }
       ];
 
       let activeSection = 0;
@@ -70,13 +74,7 @@ const AppRouter: React.FC = () => {
 
   // Function to scroll to a specific section
   const scrollToSection = (sectionIndex: number) => {
-    const sections = [
-      'hero',
-      'features', 
-      'services',
-      'packages',
-      'final-cta'
-    ];
+    const sections = ['hero', 'features', 'services', 'packages', 'lead-form', 'final-cta'];
     
     const targetSection = document.querySelector(`[data-section="${sections[sectionIndex]}"]`);
     if (targetSection) {
@@ -108,6 +106,11 @@ const AppRouter: React.FC = () => {
         canonical: "https://wittwizz.github.io/Wittwizz/#packages"
       },
       {
+        title: "Plan Your Sprint - Wittwiz Digital",
+        description: "Tell us about your goals and budget to receive a tailored Wittwiz launch sprint plan.",
+        canonical: "https://wittwizz.github.io/Wittwizz/#lead_form"
+      },
+      {
         title: "Contact Us - Wittwiz Digital",
         description: "Get started with Wittwiz Digital. Schedule a call or start your project today.",
         canonical: "https://wittwizz.github.io/Wittwizz/#contact"
@@ -137,6 +140,9 @@ const AppRouter: React.FC = () => {
         </div>
         <div data-section="packages">
           <Packages />
+        </div>
+        <div data-section="lead-form">
+          <LeadForm />
         </div>
         <div data-section="final-cta">
           <FinalCTA />

@@ -19,7 +19,8 @@ wittwizz/
 │   │   ├── Hero.tsx      # Animated hero with typewriter
 │   │   ├── Features.tsx  # Feature showcase grid
 │   │   ├── Services.tsx  # Service offerings
-│   │   └── Packages.tsx  # Pricing packages
+│   │   ├── Packages.tsx  # Pricing packages
+│   │   └── LeadForm.tsx  # Conversion-focused lead capture
 │   ├── ui/               # Core UI components
 │   │   ├── AnimatedBackground.tsx    # Floating particles & shapes
 │   │   ├── GradientBorderCard.tsx    # Interactive cards
@@ -53,6 +54,15 @@ npm run build        # Build for production
 npm run preview      # Preview production build
 ```
 
+### Environment Variables
+
+The new lead form expects an automation endpoint and (optionally) a scheduling link:
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_LEAD_FORM_ENDPOINT` | HTTPS endpoint that receives POST requests with JSON payloads for each submission (e.g., Zapier, Make, Airtable webhook, custom backend). |
+| `VITE_FOUNDER_CALL_URL` | Optional Calendly/Meet link for founders who prefer booking a call. If omitted, the site falls back to email. |
+
 ## 🎨 Design System
 
 ### Color Palette
@@ -85,7 +95,8 @@ npm run preview      # Preview production build
 2. **Features** - 8 feature cards with gradient borders
 3. **Services** - 3 service offerings + process steps
 4. **Packages** - 3 pricing tiers with popular highlighting
-5. **Final CTA** - Seamless conclusion with trust indicators
+5. **Lead Form** - Schema-driven launch sprint intake with automation-ready submit handler
+6. **Final CTA** - Seamless conclusion with trust indicators
 
 ## 🔮 Future Enhancements
 
