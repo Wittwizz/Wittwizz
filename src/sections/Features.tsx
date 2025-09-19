@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Zap, Target, Rocket, Shield, TrendingUp, Users, Globe, Code, ArrowRight } from 'lucide-react';
 import { StaggeredContainer, GradientBorderCard } from '@/ui';
+import { BRAND_NAME } from '@/content/brand';
 
 const features = [
   {
@@ -70,7 +71,7 @@ export default function Features() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-tertiary/80 backdrop-blur-md border border-accent-primary rounded-full mb-6">
               <Zap className="w-4 h-4 text-accent-primary" />
-              <span className="text-accent-primary text-sm font-medium">Why Choose Wittwiz</span>
+              <span className="text-accent-primary text-sm font-medium">Why Choose {BRAND_NAME}</span>
             </div>
             
             <h2 className="text-4xl md:text-6xl font-black text-text-primary mb-6">

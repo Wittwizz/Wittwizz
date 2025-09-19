@@ -7,6 +7,7 @@ import Packages from '../sections/Packages';
 import LeadForm from '../sections/LeadForm';
 import FinalCTA from '../ui/FinalCTA';
 import SEOHead from './SEOHead';
+import { BRAND_NAME } from '@/content/brand';
 
 const AppRouter: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -86,33 +87,33 @@ const AppRouter: React.FC = () => {
   const getSectionSEO = () => {
     const sectionData = [
       {
-        title: "Wittwiz Digital - AI-Powered Brand & Growth Partner",
+        title: `${BRAND_NAME} - AI-Powered Brand & Growth Partner`,
         description: "AI-powered brand, web, and growth partner for India's startups. Founder-friendly, efficient delivery.",
         canonical: "https://wittwizz.github.io/Wittwizz/"
       },
       {
-        title: "Features - Wittwiz Digital",
+        title: `Features - ${BRAND_NAME}`,
         description: "Lightning fast delivery, precision focused approach, and launch-ready solutions for startups.",
         canonical: "https://wittwizz.github.io/Wittwizz/#features"
       },
       {
-        title: "Services - Wittwiz Digital",
+        title: `Services - ${BRAND_NAME}`,
         description: "Complete digital services: Brand development, web development, and growth marketing for startups.",
         canonical: "https://wittwizz.github.io/Wittwizz/#services"
       },
       {
-        title: "Packages & Pricing - Wittwiz Digital",
+        title: `Packages & Pricing - ${BRAND_NAME}`,
         description: "Affordable packages for startups: Essentials, Growth, and Scale packages with transparent pricing.",
         canonical: "https://wittwizz.github.io/Wittwizz/#packages"
       },
       {
-        title: "Plan Your Sprint - Wittwiz Digital",
-        description: "Tell us about your goals and budget to receive a tailored Wittwiz launch sprint plan.",
+        title: `Plan Your Sprint - ${BRAND_NAME}`,
+        description: `Tell us about your goals and budget to receive a tailored ${BRAND_NAME} launch sprint plan.`,
         canonical: "https://wittwizz.github.io/Wittwizz/#lead_form"
       },
       {
-        title: "Contact Us - Wittwiz Digital",
-        description: "Get started with Wittwiz Digital. Schedule a call or start your project today.",
+        title: `Contact Us - ${BRAND_NAME}`,
+        description: `Get started with ${BRAND_NAME}. Schedule a call or start your project today.`,
         canonical: "https://wittwizz.github.io/Wittwizz/#contact"
       }
     ];
