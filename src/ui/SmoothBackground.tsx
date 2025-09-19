@@ -1,4 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
+type SectionTheme = {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+  overlay: string;
+};
+
+type SectionPosition = {
+  name: string;
+  top: number;
+};
+
+const SECTION_THEMES: Record<string, SectionTheme> = {
+  hero: {
+    primary: 'var(--bg-primary)',
+    secondary: 'rgba(0, 212, 255, 0.12)',
+    tertiary: 'rgba(6, 182, 212, 0.08)',
+    overlay: 'radial-gradient(circle at 30% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 60%)'
+  },
+  features: {
+    primary: 'var(--bg-secondary)',
+    secondary: 'rgba(124, 58, 237, 0.12)',
+    tertiary: 'rgba(236, 72, 153, 0.08)',
+    overlay: 'radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.15) 0%, transparent 60%)'
+  },
+  services: {
+    primary: 'var(--bg-tertiary)',
+    secondary: 'rgba(16, 185, 129, 0.12)',
+    tertiary: 'rgba(249, 115, 22, 0.08)',
+    overlay: 'radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.15) 0%, transparent 60%)'
+  },
+  packages: {
+    primary: 'var(--bg-primary)',
+    secondary: 'rgba(245, 158, 11, 0.12)',
+    tertiary: 'rgba(234, 179, 8, 0.08)',
+    overlay: 'radial-gradient(circle at 70% 70%, rgba(234, 179, 8, 0.15) 0%, transparent 60%)'
+  },
+  'lead-form': {
+    primary: 'var(--bg-secondary)',
+    secondary: 'rgba(59, 130, 246, 0.12)',
+    tertiary: 'rgba(37, 99, 235, 0.08)',
+    overlay: 'radial-gradient(circle at 50% 25%, rgba(59, 130, 246, 0.16) 0%, transparent 65%)'
+  },
+  'final-cta': {
+    primary: 'var(--bg-secondary)',
+    secondary: 'rgba(236, 72, 153, 0.12)',
+    tertiary: 'rgba(6, 182, 212, 0.08)',
+    overlay: 'radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15) 0%, transparent 60%)'
+  }
+};
+
+const DEFAULT_THEME = SECTION_THEMES.hero;
 
 interface SmoothBackgroundProps {
   children: React.ReactNode;
@@ -7,117 +60,98 @@ interface SmoothBackgroundProps {
 
 const SmoothBackground: React.FC<SmoothBackgroundProps> = ({ children, className = '' }) => {
   const [scrollY, setScrollY] = useState(0);
+  const [sectionPositions, setSectionPositions] = useState<SectionPosition[]>([]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const updateSections = () => {
+      const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-section]'));
+      const positions = elements
+        .map((element) => {
+          const rect = element.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
+          const name = element.dataset.section || 'hero';
+
+          return { name, top };
+        })
+        .sort((a, b) => a.top - b.top);
+
+      setSectionPositions(positions);
+    };
+
+    updateSections();
+    setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateSections);
+    window.addEventListener('load', updateSections);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateSections);
+      window.removeEventListener('load', updateSections);
+    };
   }, []);
 
-  // Calculate which section is currently in view and get its color theme
-  const getBackgroundStyle = () => {
-    const scrollPercent = scrollY / (document.body.scrollHeight - window.innerHeight);
-    const windowHeight = window.innerHeight;
-    
-    // Define section boundaries and their unique color themes - BALANCED SUBTLE
-    const sections = [
-      {
-        name: 'hero',
-        start: 0,
-        end: 0.2,
-        primary: 'var(--bg-primary)',
-        secondary: 'rgba(0, 212, 255, 0.12)',      // Balanced electric blue
-        tertiary: 'rgba(6, 182, 212, 0.08)'         // Balanced cyan
-      },
-      {
-        name: 'features',
-        start: 0.2,
-        end: 0.4,
-        primary: 'var(--bg-secondary)',
-        secondary: 'rgba(124, 58, 237, 0.12)',      // Balanced purple
-        tertiary: 'rgba(236, 72, 153, 0.08)'        // Balanced pink
-      },
-      {
-        name: 'services',
-        start: 0.4,
-        end: 0.6,
-        primary: 'var(--bg-tertiary)',
-        secondary: 'rgba(16, 185, 129, 0.12)',      // Balanced green
-        tertiary: 'rgba(249, 115, 22, 0.08)'        // Balanced orange
-      },
-      {
-        name: 'packages',
-        start: 0.6,
-        end: 0.8,
-        primary: 'var(--bg-primary)',
-        secondary: 'rgba(245, 158, 11, 0.12)',      // Balanced amber
-        tertiary: 'rgba(234, 179, 8, 0.08)'         // Balanced yellow
-      },
-      {
-        name: 'final-cta',
-        start: 0.8,
-        end: 1,
-        primary: 'var(--bg-secondary)',
-        secondary: 'rgba(236, 72, 153, 0.12)',      // Balanced pink
-        tertiary: 'rgba(6, 182, 212, 0.08)'         // Balanced cyan
-      }
-    ];
+  const activeSectionName = useMemo(() => {
+    if (typeof window === 'undefined' || sectionPositions.length === 0) {
+      return 'hero';
+    }
 
-    // Find the current section
-    let currentSection = sections[0];
-    for (const section of sections) {
-      if (scrollPercent >= section.start && scrollPercent < section.end) {
-        currentSection = section;
-        break;
+    const viewportMid = scrollY + window.innerHeight / 2;
+
+    for (let index = sectionPositions.length - 1; index >= 0; index -= 1) {
+      const section = sectionPositions[index];
+      if (viewportMid >= section.top) {
+        return section.name;
       }
     }
 
-    // Create a very subtle gradient based on the current section's theme
-    return {
-      background: `linear-gradient(135deg, 
-        ${currentSection.primary} 0%, 
-        ${currentSection.primary} 40%, 
-        ${currentSection.secondary} 50%, 
-        ${currentSection.primary} 60%, 
-        ${currentSection.primary} 100%
+    return sectionPositions[0]?.name ?? 'hero';
+  }, [scrollY, sectionPositions]);
+
+  const currentTheme = SECTION_THEMES[activeSectionName] ?? DEFAULT_THEME;
+
+  const backgroundStyle = useMemo(
+    () => ({
+      background: `linear-gradient(135deg,
+        ${currentTheme.primary} 0%,
+        ${currentTheme.primary} 35%,
+        ${currentTheme.secondary} 55%,
+        ${currentTheme.tertiary} 75%,
+        ${currentTheme.primary} 100%
       )`,
       backgroundSize: '200% 200%',
-      animation: 'gradientShift 15s ease infinite'  // Much slower animation
-    };
-  };
+      animation: 'gradientShift 15s ease infinite'
+    }),
+    [currentTheme]
+  );
 
-  // Calculate overlay color based on current section - BALANCED SUBTLE
-  const getOverlayStyle = () => {
-    const scrollPercent = scrollY / (document.body.scrollHeight - window.innerHeight);
-    
-    if (scrollPercent < 0.2) {
-      return { background: 'radial-gradient(circle at 30% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 60%)' };
-    } else if (scrollPercent < 0.4) {
-      return { background: 'radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.15) 0%, transparent 60%)' };
-    } else if (scrollPercent < 0.6) {
-      return { background: 'radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.15) 0%, transparent 60%)' };
-    } else if (scrollPercent < 0.8) {
-      return { background: 'radial-gradient(circle at 70% 70%, rgba(234, 179, 8, 0.15) 0%, transparent 60%)' };
-    } else {
-      return { background: 'radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15) 0%, transparent 60%)' };
-    }
-  };
+  const overlayStyle = useMemo(
+    () => ({
+      background: currentTheme.overlay
+    }),
+    [currentTheme]
+  );
 
   return (
     <div className={`smooth-background-container relative min-h-screen ${className}`}>
       {/* Dynamic Background with Section-Specific Themes */}
       <div
         className="fixed inset-0 -z-10 transition-all duration-5000 ease-out"
-        style={getBackgroundStyle()}
+        style={backgroundStyle}
       />
       
       {/* Dynamic Overlay that Changes with Sections */}
-      <div 
+      <div
         className="fixed inset-0 -z-5 opacity-20 transition-all duration-5000 ease-out"
-        style={getOverlayStyle()}
+        style={overlayStyle}
       />
       
       {/* Subtle Pattern Overlay for Depth */}
