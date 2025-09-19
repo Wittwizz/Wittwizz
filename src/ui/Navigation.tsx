@@ -7,29 +7,33 @@ const Navigation: React.FC = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', label: 'Home', icon: '🏠' },
-    { path: '/features', label: 'Features', icon: '✨' },
-    { path: '/services', label: 'Services', icon: '🛠️' },
-    { path: '/packages', label: 'Packages', icon: '📦' }
+    { path: '/', label: 'Home', icon: '🏠', sectionIndex: 0 },
+    { path: '/features', label: 'Features', icon: '✨', sectionIndex: 1 },
+    { path: '/services', label: 'Services', icon: '🛠️', sectionIndex: 2 },
+    { path: '/packages', label: 'Packages', icon: '📦', sectionIndex: 3 }
   ];
 
-  const handleNavClick = (path: string) => {
+  const handleNavClick = (path: string, sectionIndex: number) => {
     // Close mobile menu if open
     setIsMenuOpen(false);
-    
-    // Add smooth scroll to top for new page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (location.pathname === path) {
+      window.dispatchEvent(new CustomEvent('app:navigate-section', { detail: sectionIndex }));
+    }
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200/50">
+    <nav
+      data-app-navigation
+      className="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200/50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center space-x-2 text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
-            onClick={() => handleNavClick('/')}
+            onClick={() => handleNavClick('/', 0)}
           >
             <span className="text-3xl">🚀</span>
             <span>WittWizz</span>
@@ -41,7 +45,7 @@ const Navigation: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                onClick={() => handleNavClick(item.path)}
+                onClick={() => handleNavClick(item.path, item.sectionIndex)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   location.pathname === item.path
                     ? 'text-blue-600 bg-blue-50'
@@ -84,7 +88,7 @@ const Navigation: React.FC = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    onClick={() => handleNavClick(item.path)}
+                    onClick={() => handleNavClick(item.path, item.sectionIndex)}
                     className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                       location.pathname === item.path
                         ? 'text-blue-600 bg-blue-50'
